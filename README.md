@@ -11,9 +11,9 @@ To use the script, you need your own [OpenAI API secret key](https://platform.op
 
 ## Installation
 
-### [Download current versions](https://github.com/twardoch/lorem-chatum-for-indesign/archive/refs/heads/main.zip)
+### [Download current code](https://github.com/twardoch/lorem-chatum-for-indesign/archive/refs/heads/main.zip)
 
-
+Click the link above to download the current code, then unzip the downloaded `lorem-chatum-for-indesign-main.zip` and navigate into the unzipped folder. Then proceed depending on your InDesign version. 
 
 ### v2 for Adobe InDesign 2023 and newer 
 
