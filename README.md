@@ -1,6 +1,11 @@
 # Lorem Chatum for Adobe InDesign
 
-Script for Adobe InDesign that uses ChatGPT to produce better lorem ipsum. 
+**Script for Adobe InDesign that uses ChatGPT to produce better lorem ipsum.** 
+
+- Run it on an empty text frame, and ChatGPT will fill it with text in any language based on other texts on the current page. 
+- Run it on a frame that has some text, and ChatGPT will make the text longer. 
+
+To use the script, you need your own [OpenAI API secret key](https://platform.openai.com/account/api-keys). See below for more info. 
 
 ## Installation
 
