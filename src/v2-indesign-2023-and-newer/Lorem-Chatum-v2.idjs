@@ -186,7 +186,7 @@ async function estimateTokens(textFrame) {
     console.warn("  Lines: " + lines);
     console.warn("  Chars per line: " + charsPerLine);
     console.warn("  Chars: " + estimatedChars);
-    var estimatedTokens = Math.ceil(estimatedChars);
+    var estimatedTokens = Math.min(Math.ceil(estimatedChars), 4095);
 
     return estimatedTokens;
 }
