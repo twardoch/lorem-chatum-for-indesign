@@ -4,6 +4,8 @@
 
 Lorem Chatum is a script for Adobe InDesign that uses ChatGPT to generate multilingual, contextually relevant _lorem ipsum_ text. It has two functionalities: fill an empty text frame based on other texts on the page, or extend existing text within a selected frame. 
 
+
+
 ![Lorem Chatum for Adobe InDesign](./documentation/lorem-chatum.gif)
 
 ## ChatGPT
@@ -12,7 +14,9 @@ To use the script, you need your own [OpenAI API secret key](https://platform.op
 
 _As of March 2023, the GPT-4 model is much more expensive: it would cost US$900 to process the same book._
 
-ChatGPT has heavily assisted me in writing this code. And here’s a few ChatGPT-written taglines about this project: 
+ChatGPT has heavily assisted me in writing this code. 
+
+Here’s a few ChatGPT-written taglines about this project: 
 
 > “Unleash the Power of AI-Generated Lorem Ipsum with Lorem Chatum for Adobe InDesign!”
 > 
@@ -21,6 +25,14 @@ ChatGPT has heavily assisted me in writing this code. And here’s a few ChatGPT
 > “Transform Your Design Process: Discover the AI-Enhanced Lorem Ipsum Revolution with Lorem Chatum!”
 > 
 > “Lorem Chatum: Where Cutting-Edge AI Meets Adobe InDesign for Unparalleled Lorem Ipsum Creativity!”
+
+Here’s a few usage scenarios, also written by ChatGPT: 
+
+> Let’s say you’re working on a magazine layout with multiple articles on a single page. You’ve completed a few articles, but you still need to fill the remaining empty text frames with placeholder text that matches the style and language of the existing content. With _Lorem Chatum_, you can quickly generate contextually relevant _lorem ipsum_ text, making your layout design process more efficient and visually cohesive.
+> 
+> Or let’s say that you’re designing a multilingual brochure for a global event. You have text in various languages, and you need to create placeholder content that accurately reflects the characteristics of each language. _Lorem Chatum_ allows you to assign a specific language to each text frame, and then generate AI-powered _lorem ipsum_ text that matches the language and style of your actual content, making your design more professional and consistent.
+> 
+> Or imagine that you’re designing a book cover with a quote on the front. You have the beginning of the quote, but you need to extend it to fill the available space on the cover. Using _Lorem Chatum_, you can select the text frame containing the quote, and let the script generate an extended version of the quote that maintains its original style and language. This enables you to quickly create an engaging and visually appealing book cover design without manually searching for additional text.
 
 ## Installation
 
