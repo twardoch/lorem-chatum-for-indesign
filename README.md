@@ -1,5 +1,7 @@
 # Lorem Chatum for Adobe InDesign
 
+![Lorem Chatum for Adobe InDesign](./documentation/lorem-chatum.gif)
+
 **Script for Adobe InDesign that uses ChatGPT to produce better lorem ipsum.** 
 
 - Run it on an empty text frame, and ChatGPT will fill it with text in any language based on other texts on the current page. 
