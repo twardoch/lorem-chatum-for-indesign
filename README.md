@@ -11,6 +11,10 @@ To use the script, you need your own [OpenAI API secret key](https://platform.op
 
 ## Installation
 
+### [Download current versions](https://github.com/twardoch/lorem-chatum-for-indesign/archive/refs/heads/main.zip)
+
+
+
 ### v2 for Adobe InDesign 2023 and newer 
 
 **Note:** Version 2 of the code is licensed under the [Apache 2.0 License](src/v2-indesign-2023-and-newer/LICENSE.txt).
