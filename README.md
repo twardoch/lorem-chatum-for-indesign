@@ -17,11 +17,11 @@ Click the link above to download the current code, then unzip the downloaded `lo
 
 ### v2 for Adobe InDesign 2023 and newer 
 
-**Note:** Version 2 of the code is licensed under the [Apache 2.0 License](src/v2-indesign-2023-and-newer/LICENSE.txt).
+> **Note:** Version 2 of the code is licensed under the [Apache 2.0 License](src/v2-indesign-2023-and-newer/LICENSE.txt).
 
 The [`src/v2-indesign-2023-and-newer/`](src/v2-indesign-2023-and-newer/) folder contains a version of the script that uses the new UXP JavaScript scripting for Adobe InDesign 2023 and newer. This is the version that I plan to continue developing. 
 
-To install: 
+#### Simple installation 
 
 Go to [platform.openai.com/account/api-keys](https://platform.openai.com/account/api-keys) and generate a new OpenAI API secret key that starts with `sk-`. Copy the key to your clipboard. 
 
@@ -29,15 +29,17 @@ The folder also contains simple installers. Double-click the appropriate `instal
 
 Once the script is installed, start InDesign. Open **Window > Utilities > Scripts**. In the **Scripts** panel, expand the **User** section. The `Lorem-Chatum-v2.idjs` script should be there. 
 
+#### Alternative installation 
+
 Alternatively, open the `Lorem-Chatum-v2.idjs` script in a plain-text editor and put your OpenAI API key at the beginning of the script in the indicated place. Save the file, then put the modified script into the appropriate location where you have InDesign scripts.
 
 ### v1 Adobe InDesign 2022 and older
 
-**Note:** Version 1 of the code is licensed under the [GNU General Public License v3.0](src/v1-indesign-2022-and-older/LICENSE.txt), due to a dependency.
+> **Note:** Version 1 of the code is licensed under the [GNU General Public License v3.0](src/v1-indesign-2022-and-older/LICENSE.txt), due to a dependency.
 
 The [`src/v1-indesign-2022-and-older`](src/v1-indesign-2022-and-older) folder contains version 1.0 of the script that uses the old ExtendScript scripting for Adobe InDesign 2022 and older. I no longer plan to develop this version, but as of March 2023, it has largely the same functionality as version 2. 
 
-To install: 
+#### Installation 
 
 1. Go to [platform.openai.com/account/api-keys](https://platform.openai.com/account/api-keys) and generate a new OpenAI API secret key that starts with `sk-`. Copy the key to your clipboard. 
 2. Open the `Lorem-Chatum-v1.jsx` script in a plain-text editor and put your OpenAI API key at the beginning of the script in the indicated place. Save the file. 
@@ -46,6 +48,11 @@ To install:
 ## Usage
 
 The script (in both editions) has two functionalities: 
+
+1. If you select an **empty text frame** and you run the script, ChatGPT will fill the frame with text, based on **other texts on the current page**. 
+2. If you select a frame that **has some text** and you run the script, ChatGPT will make the existing text longer, but will disregard other texts on the page. 
+
+You can repeat the process on the same frame. The approximate length of the text completion depends on the size of the text frame, and on its main font size. Set the main language of the text frame in the **Character** panel to choose the language in which ChatGPT will write the text. 
 
 ### Lorem Chatum in an empty text frame
 
@@ -64,7 +71,7 @@ The script (in both editions) has two functionalities:
 2. Double-click `Lorem-Chatum` in the **Scripts** panel. 
 3. The script sends that text to ChatGPT and asks it to complete the text in the language selected in the **Character** panel. The length of the text completion is estimated based on the size of the text frame. 
 4. The script adds the result to the text of the selected frame. 
-5. Enlarge the text frame and double-click the script again to get additional text. 
+5. To get additional text, enlarge the text frame, and double-click the script again. 
 
 ## License
 
