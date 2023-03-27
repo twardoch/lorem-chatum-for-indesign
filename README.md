@@ -95,7 +95,7 @@ You can repeat the process on the same frame. The approximate length of the text
 
 - Version 2 is licensed under the [Apache 2.0 License](src/v2-indesign-2023-and-newer/LICENSE.txt).
 
-## v1 for Adobe InDesign 2022 and older
+### v1 for Adobe InDesign 2022 and older
 
 - Version 1 is licensed under the [GNU General Public License v3.0](src/v1-indesign-2022-and-older/LICENSE.txt) (due to a dependency).
 - Version 1 includes the [standalone JSON](https://github.com/indiscripts/extendscript/tree/master/JSON) code, copyright (c) 2017-2022 [Marc Autret](https://indiscripts.com/), licensed under the MIT license.  
