@@ -12,6 +12,10 @@ _As of March 2023, the GPT-4 model is much more expensive: it would cost US$900 
 
 ChatGPT-4 has heavily assisted me in writing this code. 
 
+## What ChatGPT says about this
+
+### Taglines
+
 Here’s a few ChatGPT-written taglines about this project: 
 
 > “Unleash the Power of AI-Generated _Lorem Ipsum_ with _Lorem Chatum_ for Adobe InDesign!”
@@ -22,6 +26,8 @@ Here’s a few ChatGPT-written taglines about this project:
 > 
 > “Lorem Chatum: Where Cutting-Edge AI Meets Adobe InDesign for Unparalleled _Lorem Ipsum_ Creativity!”
 
+### Scenarios
+
 Here’s a few usage scenarios, also written by ChatGPT: 
 
 > Let’s say you’re working on a magazine layout with multiple articles on a single page. You’ve completed a few articles, but you still need to fill the remaining empty text frames with placeholder text that matches the style and language of the existing content. With _Lorem Chatum_, you can quickly generate contextually relevant _lorem ipsum_ text, making your layout design process more efficient and visually cohesive.
@@ -29,6 +35,10 @@ Here’s a few usage scenarios, also written by ChatGPT:
 > Or let’s say that you’re designing a multilingual brochure for a global event. You have text in various languages, and you need to create placeholder content that accurately reflects the characteristics of each language. _Lorem Chatum_ allows you to assign a specific language to each text frame, and then generate AI-powered _lorem ipsum_ text that matches the language and style of your actual content, making your design more professional and consistent.
 > 
 > Or imagine that you’re designing a book cover with a quote on the front. You have the beginning of the quote, but you need to extend it to fill the available space on the cover. Using _Lorem Chatum_, you can select the text frame containing the quote, and let the script generate an extended version of the quote that maintains its original style and language. This enables you to quickly create an engaging and visually appealing book cover design without manually searching for additional text.
+
+## Caveat
+
+The text that _Lorem Chatum_ generates is very authentic and believable. So if you’re working on a real publication and use _Lorem Chatum_ to generate placeholder text that you mix with real text, make sure you yourself keep track of what’s real text and what’s placeholder text! 
 
 ## Installation
 
