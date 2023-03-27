@@ -1,12 +1,12 @@
-# Lorem Chatum for Adobe InDesign
+# _Lorem Chatum_ for Adobe InDesign
 
 **Script for Adobe InDesign that uses ChatGPT to produce better lorem ipsum.** 
 
-Lorem Chatum is a script for Adobe InDesign that uses ChatGPT to generate multilingual, contextually relevant _lorem ipsum_ text. It has two functionalities: fill an empty text frame based on other texts on the page, or extend existing text within a selected frame. 
+_Lorem Chatum_ is a script for Adobe InDesign that uses ChatGPT to generate multilingual, contextually relevant _lorem ipsum_ text. It has two functionalities: fill an empty text frame based on other texts on the page, or extend existing text within a selected frame. 
 
-![Lorem Chatum for Adobe InDesign](./documentation/lorem-chatum.gif)
+![_Lorem Chatum_ for Adobe InDesign](./documentation/lorem-chatum.gif)
 
-To use the script, you need your own [OpenAI API secret key](https://platform.openai.com/account/api-keys). The usage of the OpenAI API is paid, but it’s cheap. For example, Leo Tolstoy’s “War and Peace” is 1,200+ pages, 500k words, 3M+ characters. In OpenAI terms, it’s 780k tokens. Processing this book with OpenAI’s `gpt-3.5-turbo` model would cost you about US$3 (yes, just three U.S. dollars!) 
+To use _Lorem Chatum_, you need your own [OpenAI API secret key](https://platform.openai.com/account/api-keys). The usage of the OpenAI API is paid, but it’s cheap. For example, Leo Tolstoy’s “War and Peace” is 1,200+ pages, 500k words, 3M+ characters. In OpenAI terms, it’s 780k tokens. Processing this book with OpenAI’s `gpt-3.5-turbo` model would cost you about US$3 (yes, just three U.S. dollars!) 
 
 _As of March 2023, the GPT-4 model is much more expensive: it would cost US$900 to process the same book._
 
@@ -14,11 +14,11 @@ ChatGPT has heavily assisted me in writing this code.
 
 Here’s a few ChatGPT-written taglines about this project: 
 
-> “Unleash the Power of AI-Generated Lorem Ipsum with Lorem Chatum for Adobe InDesign!”
+> “Unleash the Power of AI-Generated Lorem Ipsum with _Lorem Chatum_ for Adobe InDesign!”
 > 
-> “Elevate Your InDesign Experience with Contextually Rich Lorem Ipsum Text from Lorem Chatum!”
+> “Elevate Your InDesign Experience with Contextually Rich Lorem Ipsum Text from _Lorem Chatum_!”
 > 
-> “Transform Your Design Process: Discover the AI-Enhanced Lorem Ipsum Revolution with Lorem Chatum!”
+> “Transform Your Design Process: Discover the AI-Enhanced Lorem Ipsum Revolution with _Lorem Chatum_!”
 > 
 > “Lorem Chatum: Where Cutting-Edge AI Meets Adobe InDesign for Unparalleled Lorem Ipsum Creativity!”
 
@@ -38,9 +38,9 @@ Click the link above to download the current code, then unzip the downloaded `lo
 
 ### v2 for Adobe InDesign 2023 and newer 
 
-> **Note:** Version 2 of the code is licensed under the [Apache 2.0 License](src/v2-indesign-2023-and-newer/LICENSE.txt).
+> **Note:** Version 2 of _Lorem Chatum_ is licensed under the [Apache 2.0 License](src/v2-indesign-2023-and-newer/LICENSE.txt).
 
-The [`src/v2-indesign-2023-and-newer/`](src/v2-indesign-2023-and-newer/) folder contains a version of the script that uses the new UXP JavaScript scripting for Adobe InDesign 2023 and newer. This is the version that I plan to continue developing. 
+The [`src/v2-indesign-2023-and-newer/`](src/v2-indesign-2023-and-newer/) folder contains a version of _Lorem Chatum_ that uses the new UXP JavaScript scripting for Adobe InDesign 2023 and newer. This is the version that I plan to continue developing. 
 
 #### Simple installation 
 
@@ -48,7 +48,7 @@ Go to [platform.openai.com/account/api-keys](https://platform.openai.com/account
 
 The folder also contains simple installers. Double-click the appropriate `install-` file for your platform (macOS or Windows) and when prompted, paste your OpenAI API key. (I tested the macOS installer, the Windows installer is untested.)
 
-Once the script is installed, start InDesign. Open **Window > Utilities > Scripts**. In the **Scripts** panel, expand the **User** section. The `Lorem-Chatum-v2.idjs` script should be there. 
+Once _Lorem Chatum_ is installed, start InDesign. Open **Window > Utilities > Scripts**. In the **Scripts** panel, expand the **User** section. The `Lorem-Chatum-v2.idjs` script should be there. 
 
 #### Alternative installation 
 
@@ -56,9 +56,9 @@ Alternatively, open the `Lorem-Chatum-v2.idjs` script in a plain-text editor and
 
 ### v1 Adobe InDesign 2022 and older
 
-> **Note:** Version 1 of the code is licensed under the [GNU General Public License v3.0](src/v1-indesign-2022-and-older/LICENSE.txt), due to a dependency.
+> **Note:** Version 1 of _Lorem Chatum_ is licensed under the [GNU General Public License v3.0](src/v1-indesign-2022-and-older/LICENSE.txt), due to a dependency.
 
-The [`src/v1-indesign-2022-and-older`](src/v1-indesign-2022-and-older) folder contains version 1.0 of the script that uses the old ExtendScript scripting for Adobe InDesign 2022 and older. I no longer plan to develop this version, but as of March 2023, it has largely the same functionality as version 2. 
+The [`src/v1-indesign-2022-and-older`](src/v1-indesign-2022-and-older) folder contains version 1.0 of _Lorem Chatum_ that uses the old ExtendScript scripting for Adobe InDesign 2022 and older. I no longer plan to develop this version, but as of March 2023, it has largely the same functionality as version 2. 
 
 #### Installation 
 
@@ -68,14 +68,14 @@ The [`src/v1-indesign-2022-and-older`](src/v1-indesign-2022-and-older) folder co
 
 ## Usage
 
-The script (in both editions) has two functionalities: 
+_Lorem Chatum_ in both editions has two functionalities: 
 
 1. If you select an **empty text frame** and you run the script, ChatGPT will fill the frame with text, based on **other texts on the current page**. 
 2. If you select a frame that **has some text** and you run the script, ChatGPT will make the existing text longer, but will disregard other texts on the page. 
 
 You can repeat the process on the same frame. The approximate length of the text completion depends on the size of the text frame, and on its main font size. Set the main language of the text frame in the **Character** panel to choose the language in which ChatGPT will write the text. 
 
-### Lorem Chatum in an empty text frame
+### _Lorem Chatum_ in an empty text frame
 
 1. Make sure you have some text frames on your current page that have some text. 
 2. Create an empty text frame (that has no text). 
@@ -86,7 +86,7 @@ You can repeat the process on the same frame. The approximate length of the text
 7. The script sends that text to ChatGPT and asks it to complete the text in the language selected in the **Character** panel. The length of the text completion is estimated based on the size of the text frame. 
 8. The script puts the result into the selected text frame. 
 
-### Lorem Chatum in a text frame that has text
+### _Lorem Chatum_ in a text frame that has text
 
 1. Select a text frame that has some text with the **Selection Tool**.
 2. Double-click `Lorem-Chatum` in the **Scripts** panel. 
@@ -96,18 +96,18 @@ You can repeat the process on the same frame. The approximate length of the text
 
 ## Authors & License
 
-- Copyright (c) 2023 Adam Twardoch
-- Code written with significant assistance from ChatGPT-4.
+- Copyright (c) 2023 Adam Twardoch.
+- Version 1 of the code was written with significant assistance from ChatGPT-4.
 
 ### v2 for Adobe InDesign 2023 and newer
 
-- Version 2 is licensed under the [Apache 2.0 License](src/v2-indesign-2023-and-newer/LICENSE.txt).
+- Version 2 of _Lorem Chatum_ is licensed under the [Apache 2.0 License](src/v2-indesign-2023-and-newer/LICENSE.txt).
 
 ### v1 for Adobe InDesign 2022 and older
 
-- Version 1 is licensed under the [GNU General Public License v3.0](src/v1-indesign-2022-and-older/LICENSE.txt) (due to a dependency).
+- Version 1 of _Lorem Chatum_ is licensed under the [GNU General Public License v3.0](src/v1-indesign-2022-and-older/LICENSE.txt), due to a dependency.
 - Version 1 includes the [standalone JSON](https://github.com/indiscripts/extendscript/tree/master/JSON) code, copyright (c) 2017-2022 [Marc Autret](https://indiscripts.com/), licensed under the MIT license.  
-- Version 1 includes the [Restix](https://github.com/grefel/restix/blob/master/restix.jsx) code by [Gregor Fellenz](http://www.publishingx.de) licensed under the GNU General Public License v3.0. This makes the entire code GPL3.
+- Version 1 includes the [Restix](https://github.com/grefel/restix/blob/master/restix.jsx) code by [Gregor Fellenz](http://www.publishingx.de), licensed under the GNU General Public License v3.0. This makes the entire code GPL3.
 
 
 
