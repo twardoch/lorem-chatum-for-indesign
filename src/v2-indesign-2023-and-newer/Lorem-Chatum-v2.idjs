@@ -1,0 +1,233 @@
+// Lorem Chatum v2.0 for Adobe InDesign 2023 and newer
+// Copyright (c) 2023 by Adam Twardoch
+// https://github.com/twardoch/lorem-chatum-for-indesign
+// Licensed under the Apache 2.0 License
+
+// Create a new OpenAI API secret key at https://platform.openai.com/account/api-keys
+// and paste it below
+const OPENAI_API_KEY = "sk-";
+
+
+let TEXT_COLOR;
+if (app.generalPreferences.uiBrightnessPreference <= 0.5) {
+    TEXT_COLOR = "white";
+} else {
+    TEXT_COLOR = "black";
+}
+
+
+async function alert(msg) {
+    return new Promise((resolve) => {
+        const dialog = document.createElement("dialog");
+        dialog.innerHTML = `
+            <form method="dialog" style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 8px 14px; color: inherit;">
+                <sp-body size="S" style="color: ${TEXT_COLOR};">
+                    <sp-text id="alert-message">${msg}</sp-text>
+                </sp-body>
+                <sp-footer>
+                    <sp-button id="ok-button" variant="cta">OK</sp-button>
+                </sp-footer>
+            </form>
+        `;
+
+
+        const okButton = dialog.querySelector("#ok-button");
+        okButton.addEventListener("click", () => {
+            dialog.close();
+            resolve();
+        });
+
+        document.body.appendChild(dialog);
+        dialog.showModal();
+    });
+}
+
+async function showProgress() {
+    const dialog = document.createElement("dialog");
+    dialog.innerHTML = `
+        <form method="dialog" style="padding: 8px 14px;">
+            <sp-body size="S" style="color: ${TEXT_COLOR};">
+                <sp-text>Lorem Chatum dolor...</sp-text>
+            </sp-body>
+        </form>
+    `;
+    document.body.appendChild(dialog);
+    const progressBar = dialog.querySelector("#progress-bar");
+    dialog.showModal();
+    return { dialog, progressBar };
+}
+
+async function openAIApi(apiKey, prompt, lang, maxTokens) {
+    let requestBody = JSON.stringify({
+        model: 'gpt-3.5-turbo',
+        messages: [
+            {
+                role: 'system',
+                content:
+                    'You are a multilingual InDesign text assistant. Always reply in ' + lang + '. Never ask anything, do not hesitate, never add anything that is not requested. Continue the user message as a story to the max length.',
+            },
+            { role: 'user', content: prompt },
+        ],
+        temperature: 1,
+        max_tokens: maxTokens,
+        top_p: 1,
+        n: 1,
+        frequency_penalty: 0,
+        presence_penalty: 0,
+    });
+
+    let response = await fetch('https://api.openai.com/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + apiKey,
+        },
+        body: requestBody
+    });
+
+    if (!response.ok) {
+        if (response.statusText == 'unauthorized') {
+            throw new Error(`<a href="https://platform.openai.com/account/api-keys">Click here to create an OpenAI API secret key,</a> then paste it at the beginning of this script, and run again.`);
+        } else {
+            throw new Error(`Error connecting to OpenAI API: ${response.statusText}.`);
+        }
+    }
+
+    let responseData = await response.json();
+    let completion = responseData.choices[0].message.content;
+    return completion;
+}
+
+
+/// Rest of the script
+
+async function getText(textFrame) {
+    var text = "";
+    var words = textFrame.words;
+    if (words != null) {
+        for (var i = 0; i < words.length; i++) {
+            var word = words.item(i);
+            var wordContent = word.contents;
+
+            if (typeof wordContent === 'string') {
+                text += wordContent + " ";
+            }
+        }
+    }
+
+    return text;
+}
+
+async function getContext(textFrame) {
+    var context = await getText(textFrame);
+    if (context.length === 0) {
+        context = await collectPageText(textFrame);
+    }
+    return context;
+}
+
+async function collectPageText(textFrame) {
+    var currentPage = textFrame.parentPage;
+    var pages = [];
+
+    pages.push(currentPage);
+
+    var combinedText = '';
+    var maxWords = 500;
+    for (var i = 0; i < pages.length; i++) {
+        combinedText += await getTextFromPage(pages[i]);
+        if (wordCount(combinedText) >= maxWords) {
+            combinedText = await capTextAtWords(combinedText, maxWords);
+            break;
+        }
+    }
+
+    return combinedText;
+}
+
+async function getTextFromPage(page) {
+    var textFrames = page.textFrames;
+    var combinedText = '';
+    for (var i = 0; i < textFrames.length; i++) {
+        var textFrame = textFrames.item(i);
+        combinedText += await getText(textFrame);
+    }
+
+    return combinedText;
+}
+
+
+async function wordCount(text) {
+    var words = text.replace(/^\s+|\s+$/g, '').split(/\s+/);
+    return words.length;
+}
+
+async function capTextAtWords(text, wordLimit) {
+    var words = text.replace(/^\s+|\s+$/g, '').split(/\s+/);
+    var cappedWords = words.slice(0, wordLimit);
+    return cappedWords.join(' ');
+}
+
+async function estimateTokens(textFrame) {
+    var frameWidth = textFrame.geometricBounds[3] - textFrame.geometricBounds[1];
+    var frameHeight = textFrame.geometricBounds[2] - textFrame.geometricBounds[0];
+    var fontSize = textFrame.texts.item(0).pointSize;
+    var lineHeight = fontSize * 1.2;
+
+    var avgCharWidth = fontSize * 0.6;
+    var charsPerLine = Math.floor(frameWidth / avgCharWidth);
+    var lines = Math.floor(frameHeight / lineHeight);
+
+    var estimatedChars = charsPerLine * lines;
+    console.warn("Estimated chars: " + estimatedChars);
+    var estimatedTokens = Math.ceil(estimatedChars * 4);
+
+    return estimatedTokens;
+}
+
+async function getOpenAIApiKey() {
+    return OPENAI_API_KEY;
+}
+
+
+async function getOpenAICompletion(context, lang, estimatedTokens) {
+    var apiKey = await getOpenAIApiKey();
+    var prompt = context.replace(/[\r\n]+/g, ' ') + ' ';
+    var completion = '';
+
+    try {
+        completion = await openAIApi(apiKey, prompt, lang, estimatedTokens);
+    } catch (error) {
+        await alert('OpenAI error: ' + error.message);
+    }
+
+    return ' ' + completion.replace(/^\n/, '');
+}
+
+async function completeSelectedFrameText() {
+    if (
+        app.documents.length === 0 ||
+        app.selection.length !== 1 ||
+        app.selection[0].constructorName !== 'TextFrame'
+    ) {
+        await alert('Please select a text frame, and set the Character language to the desired language.');
+        return;
+    }
+
+    const { dialog: progressDialog } = await showProgress();
+    try {
+        var textFrame = app.selection[0];
+        var context = await getContext(textFrame);
+        var lang = textFrame.texts.item(0).appliedLanguage.name;
+        console.warn("CONTEXT: " + context);
+        var estimatedTokens = await estimateTokens(textFrame);
+        console.warn("TOKENS: " + estimatedTokens);
+        var completion = await getOpenAICompletion(context, lang, estimatedTokens);
+        console.warn("COMPLETION: " + completion);
+        textFrame.contents += completion;
+    } finally {
+        progressDialog.close();
+    }
+}
+
+await completeSelectedFrameText();
