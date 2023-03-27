@@ -64,7 +64,7 @@ async function openAIApi(apiKey, prompt, lang, maxTokens) {
             {
                 role: 'system',
                 content:
-                    'You are a multilingual InDesign text assistant. Always reply in ' + lang + '. Never ask anything, do not hesitate, never add anything that is not requested. Continue the user message as a story to the max length.',
+                    'Write an essay in ' + lang + ', to the max length, by continuing the prompt. Do not ask anything, do not add anything that is not requested.',
             },
             { role: 'user', content: prompt },
         ],
@@ -179,8 +179,14 @@ async function estimateTokens(textFrame) {
     var lines = Math.floor(frameHeight / lineHeight);
 
     var estimatedChars = charsPerLine * lines;
-    console.warn("Estimated chars: " + estimatedChars);
-    var estimatedTokens = Math.ceil(estimatedChars * 4);
+    console.warn("  frameHeight: " + frameHeight);
+    console.warn("  frameWidth: " + frameWidth);
+    console.warn("  lineHeight: " + lineHeight);
+    console.warn("  fontSize: " + fontSize);
+    console.warn("  Lines: " + lines);
+    console.warn("  Chars per line: " + charsPerLine);
+    console.warn("  Chars: " + estimatedChars);
+    var estimatedTokens = Math.ceil(estimatedChars);
 
     return estimatedTokens;
 }
@@ -213,21 +219,35 @@ async function completeSelectedFrameText() {
         await alert('Please select a text frame, and set the Character language to the desired language.');
         return;
     }
+    doc = app.activeDocument;
+    const horizontalMeasurementUnits = doc.viewPreferences.horizontalMeasurementUnits;
+    doc.viewPreferences.horizontalMeasurementUnits = MeasurementUnits.points;
+    const verticalMeasurementUnits = doc.viewPreferences.verticalMeasurementUnits;
+    doc.viewPreferences.verticalMeasurementUnits = MeasurementUnits.points;
+    const typographicMeasurementUnits = doc.viewPreferences.typographicMeasurementUnits;
+    doc.viewPreferences.typographicMeasurementUnits = MeasurementUnits.points;
+    const textSizeMeasurementUnits = doc.viewPreferences.textSizeMeasurementUnits;
+    doc.viewPreferences.textSizeMeasurementUnits = MeasurementUnits.points;
 
     const { dialog: progressDialog } = await showProgress();
     try {
         var textFrame = app.selection[0];
         var context = await getContext(textFrame);
-        var lang = textFrame.texts.item(0).appliedLanguage.name;
+        var lang = textFrame.texts.item(0).appliedLanguage.name.split(":")[0];
         console.warn("CONTEXT: " + context);
         var estimatedTokens = await estimateTokens(textFrame);
-        console.warn("TOKENS: " + estimatedTokens);
+        console.warn("TOKENS: " + estimatedTokens + " LANG: " + lang);
         var completion = await getOpenAICompletion(context, lang, estimatedTokens);
         console.warn("COMPLETION: " + completion);
         textFrame.contents += completion;
     } finally {
         progressDialog.close();
     }
+    doc.viewPreferences.horizontalMeasurementUnits = horizontalMeasurementUnits;
+    doc.viewPreferences.verticalMeasurementUnits = verticalMeasurementUnits;
+    doc.viewPreferences.typographicMeasurementUnits = typographicMeasurementUnits;
+    doc.viewPreferences.textSizeMeasurementUnits = textSizeMeasurementUnits;
+
 }
 
 await completeSelectedFrameText();
