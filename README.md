@@ -94,6 +94,32 @@ You can repeat the process on the same frame. The approximate length of the text
 4. The script adds the result to the text of the selected frame. 
 5. To get additional text, enlarge the text frame, and double-click the script again. 
 
+## Contributing / Future
+
+### v2 for Adobe InDesign 2023 and newer
+
+Version 2 is written using modern ES6 and uses the [Adobe InDesign UXP](https://developer.adobe.com/indesign/uxp/) scripting API introduced in late 2022. ES6 has support for JSON and https API calls, so no polyfills were necessary. 
+
+I’d like to continue working on this version, and contributions are welcome. Keep in mind that I’m not a proficient JS developer, so I cannot implement wishes you may have. But if you propose a pull request yourself, I may consider it. 
+
+Some ideas for future work (in no particular order) include: 
+
+- [ ] Turning the script into a plugin once InDesign supports UXP plugins.
+- [ ] Improving the UI.
+- [ ] Adding an easier ability to enter the OpenAI API key, which is then stored using the [Key-Value Storage](https://developer.adobe.com/xd/uxp/uxp/reference-js/Modules/uxp/Key-Value%20Storage/SecureStorage/) (this won’t work if the code is a script, but may work once the code becomes a plugin.)
+- [ ] Adding more types of prompting.
+- [ ] Improving the estimated token length.
+- [ ] Adding a functionality of translation if two frames are selected: one empty (target) and one full (source).
+- [ ] Adding a functionality to shorten/summarize the text to get rid of a frame overflow.
+
+### v1 for Adobe InDesign 2022 and older
+
+Version 1 is written in old ExtendScript, which cannot natively process JSON or make https API calls. 
+
+The code includes “polyfills” for both functionalities. For simplicity of packaging, the polyfills are included directly into the script code. 
+
+I consider this version “as is”, and “end-of-life”. I don’t plan to accept contributions to this version.
+
 ## Authors & License
 
 - Copyright (c) 2023 Adam Twardoch.
@@ -102,12 +128,10 @@ You can repeat the process on the same frame. The approximate length of the text
 ### v2 for Adobe InDesign 2023 and newer
 
 - Version 2 of _Lorem Chatum_ is licensed under the [Apache 2.0 License](src/v2-indesign-2023-and-newer/LICENSE.txt).
-- Version 2 is written using modern ES6 and uses the [Adobe InDesign UXP](https://developer.adobe.com/indesign/uxp/) scripting API introduced in late 2022. ES6 has support for JSON and https API calls, so no polyfills were necessary. 
 
 ### v1 for Adobe InDesign 2022 and older
 
 - Version 1 of _Lorem Chatum_ is licensed under the [GNU General Public License v3.0](src/v1-indesign-2022-and-older/LICENSE.txt), due to a dependency.
-- Version 1 is written in old ExtendScript, which cannot natively process JSON or make https API calls. The code includes “polyfills” for both functionalities. For simplicity of packaging, the polyfills are included directly into the script code. 
-    - For JSON processing, _Lorem Chatum_ v1 includes the [standalone JSON](https://github.com/indiscripts/extendscript/tree/master/JSON) code, copyright (c) 2017-2022 [Marc Autret](https://indiscripts.com/), licensed under the MIT license.  
-    - For https API calls, _Lorem Chatum_ v1 includes the [Restix](https://github.com/grefel/restix/blob/master/restix.jsx) code by [Gregor Fellenz](http://www.publishingx.de), licensed under the GNU General Public License v3.0. This makes the entire code GPL3.
+- For JSON processing, _Lorem Chatum_ v1 includes the [standalone JSON](https://github.com/indiscripts/extendscript/tree/master/JSON) code, copyright (c) 2017-2022 [Marc Autret](https://indiscripts.com/), licensed under the MIT license.  
+- For https API calls, _Lorem Chatum_ v1 includes the [Restix](https://github.com/grefel/restix/blob/master/restix.jsx) code by [Gregor Fellenz](http://www.publishingx.de), licensed under the GNU General Public License v3.0. This makes the entire code GPL3.
 
