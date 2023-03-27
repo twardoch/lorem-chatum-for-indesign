@@ -2,12 +2,25 @@
 
 **Script for Adobe InDesign that uses ChatGPT to produce better lorem ipsum.** 
 
-- Run it on an empty text frame, and ChatGPT will fill it with text in any language based on other texts on the current page. 
-- Run it on a frame that has some text, and ChatGPT will make the text longer. 
-
-To use the script, you need your own [OpenAI API secret key](https://platform.openai.com/account/api-keys). See below for more info. 
+Lorem Chatum is a script for Adobe InDesign that uses ChatGPT to generate multilingual, contextually relevant _lorem ipsum_ text. It has two functionalities: fill an empty text frame based on other texts on the page, or extend existing text within a selected frame. 
 
 ![Lorem Chatum for Adobe InDesign](./documentation/lorem-chatum.gif)
+
+## ChatGPT
+
+To use the script, you need your own [OpenAI API secret key](https://platform.openai.com/account/api-keys). The usage of the OpenAI API is paid, but it’s cheap. For example, Leo Tolstoy’s “War and Peace” is 1,200+ pages, 500k words, 3M+ characters. In OpenAI terms, it’s 780k tokens. Processing this book with OpenAI’s `gpt-3.5-turbo` model would cost you about US$3 (yes, just three U.S. dollars!) 
+
+_As of March 2023, the GPT-4 model is much more expensive: it would cost US$900 to process the same book._
+
+ChatGPT has heavily assisted me in writing this code. And here’s a few ChatGPT-written taglines about this project: 
+
+> “Unleash the Power of AI-Generated Lorem Ipsum with Lorem Chatum for Adobe InDesign!”
+> 
+> “Elevate Your InDesign Experience with Contextually Rich Lorem Ipsum Text from Lorem Chatum!”
+> 
+> “Transform Your Design Process: Discover the AI-Enhanced Lorem Ipsum Revolution with Lorem Chatum!”
+> 
+> “Lorem Chatum: Where Cutting-Edge AI Meets Adobe InDesign for Unparalleled Lorem Ipsum Creativity!”
 
 ## Installation
 
