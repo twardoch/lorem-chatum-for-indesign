@@ -73,7 +73,7 @@ You can repeat the process on the same frame. The approximate length of the text
 2. Create an empty text frame (that has no text). 
 3. Assign a language to the text frame in the **Character** panel. 
 4. Select the frame with the **Selection Tool**. 
-5. Double-click `Lorem-Chatum` in the **Scripts** panel. 
+5. Double-click `Lorem-Chatum` (`-v2.idjs` or `-v1.jsx`) in the **Scripts** panel. 
 6. The script gathers the text from the other text frames on the current page. 
 7. The script sends that text to ChatGPT and asks it to complete the text in the language selected in the **Character** panel. The length of the text completion is estimated based on the size of the text frame. 
 8. The script puts the result into the selected text frame. 
