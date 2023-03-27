@@ -40,6 +40,8 @@ Here’s a few usage scenarios, also written by ChatGPT:
 
 The text that _Lorem Chatum_ generates is very authentic and believable. So if you’re working on a real publication and use _Lorem Chatum_ to generate placeholder text that you mix with real text, make sure you yourself keep track of what’s real text and what’s placeholder text! 
 
+As with any AI-generated content, you shouldn’t trust _Lorem Chatum_ with generating ready-to-publish text. Make sure to review the generated text before sharing your publication with others. 
+
 ## Installation
 
 ### ➡️ [Download current versions of Lorem Chatum](https://github.com/twardoch/lorem-chatum-for-indesign/archive/refs/heads/main.zip)
