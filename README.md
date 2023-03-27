@@ -1,6 +1,6 @@
 # _Lorem Chatum_ for Adobe InDesign
 
-**Script for Adobe InDesign that uses ChatGPT to produce better lorem ipsum.** 
+**Script for Adobe InDesign that uses ChatGPT to produce better _lorem ipsum_.** 
 
 _Lorem Chatum_ is a script for Adobe InDesign that uses ChatGPT to generate multilingual, contextually relevant _lorem ipsum_ text. It has two functionalities: fill an empty text frame based on other texts on the page, or extend existing text within a selected frame. 
 
@@ -10,17 +10,17 @@ To use _Lorem Chatum_, you need your own [OpenAI API secret key](https://platfor
 
 _As of March 2023, the GPT-4 model is much more expensive: it would cost US$900 to process the same book._
 
-ChatGPT has heavily assisted me in writing this code. 
+ChatGPT-4 has heavily assisted me in writing this code. 
 
 Here’s a few ChatGPT-written taglines about this project: 
 
-> “Unleash the Power of AI-Generated Lorem Ipsum with _Lorem Chatum_ for Adobe InDesign!”
+> “Unleash the Power of AI-Generated _Lorem Ipsum_ with _Lorem Chatum_ for Adobe InDesign!”
 > 
-> “Elevate Your InDesign Experience with Contextually Rich Lorem Ipsum Text from _Lorem Chatum_!”
+> “Elevate Your InDesign Experience with Contextually Rich _Lorem Ipsum_ Text from _Lorem Chatum_!”
 > 
-> “Transform Your Design Process: Discover the AI-Enhanced Lorem Ipsum Revolution with _Lorem Chatum_!”
+> “Transform Your Design Process: Discover the AI-Enhanced _Lorem Ipsum_ Revolution with _Lorem Chatum_!”
 > 
-> “Lorem Chatum: Where Cutting-Edge AI Meets Adobe InDesign for Unparalleled Lorem Ipsum Creativity!”
+> “Lorem Chatum: Where Cutting-Edge AI Meets Adobe InDesign for Unparalleled _Lorem Ipsum_ Creativity!”
 
 Here’s a few usage scenarios, also written by ChatGPT: 
 
