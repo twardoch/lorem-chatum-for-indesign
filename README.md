@@ -102,14 +102,12 @@ You can repeat the process on the same frame. The approximate length of the text
 ### v2 for Adobe InDesign 2023 and newer
 
 - Version 2 of _Lorem Chatum_ is licensed under the [Apache 2.0 License](src/v2-indesign-2023-and-newer/LICENSE.txt).
+- Version 2 is written using modern ES6 and uses the [Adobe InDesign UXP](https://developer.adobe.com/indesign/uxp/) scripting API introduced in late 2022. ES6 has support for JSON and https API calls, so no polyfills were necessary. 
 
 ### v1 for Adobe InDesign 2022 and older
 
 - Version 1 of _Lorem Chatum_ is licensed under the [GNU General Public License v3.0](src/v1-indesign-2022-and-older/LICENSE.txt), due to a dependency.
-- Version 1 includes the [standalone JSON](https://github.com/indiscripts/extendscript/tree/master/JSON) code, copyright (c) 2017-2022 [Marc Autret](https://indiscripts.com/), licensed under the MIT license.  
-- Version 1 includes the [Restix](https://github.com/grefel/restix/blob/master/restix.jsx) code by [Gregor Fellenz](http://www.publishingx.de), licensed under the GNU General Public License v3.0. This makes the entire code GPL3.
-
-
-
-
+- Version 1 is written in old ExtendScript, which cannot natively process JSON or make https API calls. The code includes “polyfills” for both functionalities. For simplicity of packaging, the polyfills are included directly into the script code. 
+    - For JSON processing, _Lorem Chatum_ v1 includes the [standalone JSON](https://github.com/indiscripts/extendscript/tree/master/JSON) code, copyright (c) 2017-2022 [Marc Autret](https://indiscripts.com/), licensed under the MIT license.  
+    - For https API calls, _Lorem Chatum_ v1 includes the [Restix](https://github.com/grefel/restix/blob/master/restix.jsx) code by [Gregor Fellenz](http://www.publishingx.de), licensed under the GNU General Public License v3.0. This makes the entire code GPL3.
 
