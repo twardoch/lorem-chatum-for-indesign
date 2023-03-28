@@ -12,6 +12,8 @@ _As of March 2023, the GPT-4 model is much more expensive: it would cost US$900 
 
 ChatGPT-4 has heavily assisted me in writing this code. 
 
+---
+
 ## What ChatGPT says about this
 
 ### Taglines
@@ -36,11 +38,15 @@ Here’s a few usage scenarios, also written by ChatGPT:
 > 
 > Or imagine that you’re designing a book cover with a quote on the front. You have the beginning of the quote, but you need to extend it to fill the available space on the cover. Using _Lorem Chatum_, you can select the text frame containing the quote, and let the script generate an extended version of the quote that maintains its original style and language. This enables you to quickly create an engaging and visually appealing book cover design without manually searching for additional text.
 
-## Caveat
+---
+
+## Caveats
 
 The text that _Lorem Chatum_ generates is very authentic and believable. So if you’re working on a real publication and use _Lorem Chatum_ to generate placeholder text that you mix with real text, make sure you yourself keep track of what’s real text and what’s placeholder text! 
 
 As with any AI-generated content, you shouldn’t trust _Lorem Chatum_ with generating ready-to-publish text. Make sure to review the generated text before sharing your publication with others. 
+
+---
 
 ## Installation
 
@@ -78,6 +84,8 @@ The [`src/v1-indesign-2022-and-older`](src/v1-indesign-2022-and-older) folder co
 2. Open the `Lorem-Chatum-v1.jsx` script in a plain-text editor and put your OpenAI API key at the beginning of the script in the indicated place. Save the file. 
 3. Put the modified script into the appropriate location where you have InDesign scripts.
 
+---
+
 ## Usage
 
 _Lorem Chatum_ in both editions has two functionalities: 
@@ -106,6 +114,8 @@ You can repeat the process on the same frame. The approximate length of the text
 4. The script adds the result to the text of the selected frame. 
 5. To get additional text, enlarge the text frame, and double-click the script again. 
 
+---
+
 ## Contributing / Future
 
 ### v2 for Adobe InDesign 2023 and newer
@@ -131,6 +141,8 @@ Version 1 is written in old ExtendScript, which cannot natively process JSON or 
 The code includes “polyfills” for both functionalities. For simplicity of packaging, the polyfills are included directly into the script code. 
 
 I consider this version “as is”, and “end-of-life”. I don’t plan to accept contributions to this version.
+
+---
 
 ## Authors & License
 
