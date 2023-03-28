@@ -159,3 +159,34 @@ I consider this version “as is”, and “end-of-life”. I don’t plan to ac
 - For JSON processing, _Lorem Chatum_ v1 includes the [standalone JSON](https://github.com/indiscripts/extendscript/tree/master/JSON) code, copyright (c) 2017-2022 [Marc Autret](https://indiscripts.com/), licensed under the MIT license.  
 - For https API calls, _Lorem Chatum_ v1 includes the [Restix](https://github.com/grefel/restix/blob/master/restix.jsx) code by [Gregor Fellenz](http://www.publishingx.de), licensed under the GNU General Public License v3.0. This makes the entire code GPL3.
 
+--- 
+
+## Other notes
+
+### A few words about writing code together with ChatGPT
+
+[2023-03-28] It was an interesting experience. I’m not a JavaScript developer **at all**. I know Python, I can imagine how a program should work and I can explain it in natural language. So ChatGPT was a good candidate. 
+
+The code is not very complicated, but what makes the process complicated is that you’re working within several frameworks or APIs. Translating ideas into specific code is difficult if you lack experience in a specific API. Here, ChatGPT was pretty knowledgeable about the old ExtendScript API for InDesign, and could suggest correct code right away. So the first iteration was created in ExtendScript (that’s v1 now). 
+
+However, it turned out that ExtendScript was too old to know anything about JSON, and especially about using https to connect to the OpenAI API. Fortunately, I was able to find some off-the-shelf code on Github that provided “polyfills” for that. Yet overall, I didn’t want the code to rely on the polyfills if I were to extend it later. 
+
+Fortunately again, I found that Adobe just recently (in late 2022) released UXP-based scripting for InDesign. I didn’t know much about UXP, but I was glad to see that it’s a modern ES6 implementation. 
+
+The caveat was that ChatGPT didn’t know much about the UXP APIs. So it took me quite some time and trial-and-error to port the code to UXP. I especially found these resources useful: 
+
+- https://developer.adobe.com/indesign/uxp/
+- https://github.com/AdobeDocs/uxp-indesign/tree/main/src/pages/uxp-scripting-samples
+- https://github.com/RolandDreger/indesign-uxp-script-snippets
+
+I also appreciated the fact that the documentation for InDesign UXP stuff is on Github: 
+
+- https://github.com/AdobeDocs/uxp-indesign/blob/main/src/pages/recipes/index.md
+- https://github.com/AdobeDocs/indesign-18-dom/tree/main/src/pages/api
+- https://github.com/AdobeDocs/uxp-indesign-18-uxp/tree/main/src/pages/uxp-api
+
+I ended up pasting some of these samples and documents into ChatGPT so that it would pick up on the new coding styles. That has proved effective. I think if one were to create an embedding of this documentation (or in fact of both the old and new documentations), or better still, fine-tune a custom model, that could facilitate automatic porting old ExtendScript code into UXP code. 
+
+One thing where ChatGPT had a much easier job with UXP than the old ExtendScript was creating a dialog. Since the dialog is HTML, with standards-compliant CSS and JS, ChatGPT can pull from all its knowledge of pre-existing code. 
+
+Overall, what’s needed is to teach ChatGPT some essential bits of the new API, and it can help porting older code into UXP, and can help writing new code straightaway. 
