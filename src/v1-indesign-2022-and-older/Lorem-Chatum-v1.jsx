@@ -1949,8 +1949,30 @@ $.global.hasOwnProperty('restix') ||
 
 //// LOGIC
 
-/// Connecting to OpenAI API
+/**
+ * This script is used to connect to the OpenAI API and complete text in a selected text frame.
+ * 
+ * The script first connects to the OpenAI API using the provided API key, prompt, language, and maximum tokens.
+ * 
+ * The script then collects the context of the selected text frame and sends it to the OpenAI API for completion.
+ * 
+ * The completion is then added to the end of the selected text frame.
+ * 
+ * The script also includes helper functions for collecting text from pages, counting words, and estimating tokens.
+ * 
+ * @version 1.0
+ * @since 2021-11-01
+ */
 
+/**
+ * This function connects to the OpenAI API using the provided API key, prompt, language, and maximum tokens.
+ * 
+ * @param {string} apiKey - The API key for the OpenAI API.
+ * @param {string} prompt - The prompt to send to the OpenAI API for completion.
+ * @param {string} lang - The language of the text to be completed.
+ * @param {number} maxTokens - The maximum number of tokens to be returned by the OpenAI API.
+ * @returns {string} - The completion returned by the OpenAI API.
+ */
 function openAIApi(apiKey, prompt, lang, maxTokens) {
     // Request object
     var body = JSON.lave({
@@ -1998,8 +2020,12 @@ function openAIApi(apiKey, prompt, lang, maxTokens) {
     return completion;
 }
 
-/// Rest of the script
-
+/**
+ * This function collects the context of the selected text frame and sends it to the OpenAI API for completion.
+ * 
+ * @param {TextFrame} textFrame - The selected text frame.
+ * @returns {string} - The context of the selected text frame.
+ */
 function getContext(textFrame) {
     var context = textFrame.contents;
     if (context.length === 0) {
@@ -2008,6 +2034,12 @@ function getContext(textFrame) {
     return context;
 }
 
+/**
+ * This function collects the text from the pages of the selected text frame.
+ * 
+ * @param {TextFrame} textFrame - The selected text frame.
+ * @returns {string} - The text from the pages of the selected text frame.
+ */
 function collectPageText(textFrame) {
     var currentPage = textFrame.parentPage;
     var doc = currentPage.parent;
@@ -2028,6 +2060,12 @@ function collectPageText(textFrame) {
     return combinedText;
 }
 
+/**
+ * This function collects the text from a page.
+ * 
+ * @param {Page} page - The page to collect text from.
+ * @returns {string} - The text from the page.
+ */
 function getTextFromPage(page) {
     var textFrames = page.textFrames;
     var combinedText = '';
@@ -2039,17 +2077,36 @@ function getTextFromPage(page) {
     return combinedText;
 }
 
+/**
+ * This function counts the number of words in a string.
+ * 
+ * @param {string} text - The string to count words in.
+ * @returns {number} - The number of words in the string.
+ */
 function wordCount(text) {
     var words = text.replace(/^\s+|\s+$/g, '').split(/\s+/);
     return words.length;
 }
 
+/**
+ * This function caps the text at a certain number of words.
+ * 
+ * @param {string} text - The text to cap.
+ * @param {number} wordLimit - The maximum number of words to allow.
+ * @returns {string} - The capped text.
+ */
 function capTextAtWords(text, wordLimit) {
     var words = text.replace(/^\s+|\s+$/g, '').split(/\s+/);
     var cappedWords = words.slice(0, wordLimit);
     return cappedWords.join(' ');
 }
 
+/**
+ * This function estimates the number of tokens needed to complete the selected text frame.
+ * 
+ * @param {TextFrame} textFrame - The selected text frame.
+ * @returns {number} - The estimated number of tokens needed to complete the selected text frame.
+ */
 function estimateTokens(textFrame) {
     var frameWidth = textFrame.geometricBounds[3] - textFrame.geometricBounds[1];
     var frameHeight = textFrame.geometricBounds[2] - textFrame.geometricBounds[0];
@@ -2066,6 +2123,14 @@ function estimateTokens(textFrame) {
     return estimatedTokens;
 }
 
+/**
+ * This function gets the completion from the OpenAI API using the provided context, language, and estimated tokens.
+ * 
+ * @param {string} context - The context to send to the OpenAI API for completion.
+ * @param {string} lang - The language of the text to be completed.
+ * @param {number} estimatedTokens - The estimated number of tokens to be returned by the OpenAI API.
+ * @returns {string} - The completion returned by the OpenAI API.
+ */
 function getOpenAICompletion(context, lang, estimatedTokens) {
     var apiKey = OPENAI_API_KEY;
     var prompt = context.replace(/[\r\n]+/g, ' ') + ' ';
@@ -2076,7 +2141,22 @@ function getOpenAICompletion(context, lang, estimatedTokens) {
     return ' ' + completion.replace(/^\n/, '');
 }
 
+/**
+ * This function completes the selected text frame using the OpenAI API.
+ * 
+ * The function first checks if a text frame is selected and sets the language to the desired language.
+ * 
+ * The function then collects the context of the selected text frame and estimates the number of tokens needed to complete it.
+ * 
+ * The function then sends the context to the OpenAI API for completion and adds the completion to the end of the selected text frame.
+ * 
+ * The function also includes helper functions for collecting text from pages, counting words, and estimating tokens.
+ * 
+ * @version 1.0
+ * @since 2021-11-01
+ */
 function completeSelectedFrameText() {
+    // Check if a text frame is selected
     if (
         app.documents.length === 0 ||
         app.selection.length !== 1 ||

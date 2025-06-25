@@ -1,4 +1,5 @@
 // Lorem Chatum v2.0 for Adobe InDesign 2023 and newer
+
 // Copyright (c) 2023 by Adam Twardoch
 // https://github.com/twardoch/lorem-chatum-for-indesign
 // Licensed under the Apache 2.0 License
@@ -17,6 +18,11 @@ if (app.generalPreferences.uiBrightnessPreference <= 0.5) {
 
 
 async function alert(msg) {
+    /**
+     * This function creates a dialog box with a message and an OK button.
+     * @param {string} msg - The message to display in the dialog box.
+     * @returns {Promise} - A promise that resolves when the OK button is clicked.
+     */
     return new Promise((resolve) => {
         const dialog = document.createElement("dialog");
         dialog.innerHTML = `
@@ -43,6 +49,10 @@ async function alert(msg) {
 }
 
 async function showProgress() {
+    /**
+     * This function creates a dialog box with a message indicating that the script is running.
+     * @returns {Promise} - A promise that resolves when the dialog box is closed.
+     */
     const dialog = document.createElement("dialog");
     dialog.innerHTML = `
         <form method="dialog" style="padding: 8px 14px;">
@@ -58,6 +68,14 @@ async function showProgress() {
 }
 
 async function openAIApi(apiKey, prompt, lang, maxTokens) {
+    /**
+     * This function sends a request to the OpenAI API to generate text based on a prompt.
+     * @param {string} apiKey - The OpenAI API key.
+     * @param {string} prompt - The prompt to generate text from.
+     * @param {string} lang - The language to generate text in.
+     * @param {number} maxTokens - The maximum number of tokens to generate.
+     * @returns {Promise} - A promise that resolves with the generated text.
+     */
     let requestBody = JSON.stringify({
         model: 'gpt-3.5-turbo',
         messages: [
@@ -98,10 +116,12 @@ async function openAIApi(apiKey, prompt, lang, maxTokens) {
     return completion;
 }
 
-
-/// Rest of the script
-
 async function getText(textFrame) {
+    /**
+     * This function gets the text content of a text frame.
+     * @param {TextFrame} textFrame - The text frame to get the text content from.
+     * @returns {Promise} - A promise that resolves with the text content of the text frame.
+     */
     var text = "";
     var words = textFrame.words;
     if (words != null) {
@@ -119,6 +139,11 @@ async function getText(textFrame) {
 }
 
 async function getContext(textFrame) {
+    /**
+     * This function gets the context for generating text based on a text frame.
+     * @param {TextFrame} textFrame - The text frame to get the context from.
+     * @returns {Promise} - A promise that resolves with the context for generating text.
+     */
     var context = await getText(textFrame);
     if (context.length === 0) {
         context = await collectPageText(textFrame);
@@ -127,6 +152,11 @@ async function getContext(textFrame) {
 }
 
 async function collectPageText(textFrame) {
+    /**
+     * This function collects text from all text frames on a page.
+     * @param {TextFrame} textFrame - The text frame to collect text from.
+     * @returns {Promise} - A promise that resolves with the collected text.
+     */
     var currentPage = textFrame.parentPage;
     var pages = [];
 
@@ -146,6 +176,11 @@ async function collectPageText(textFrame) {
 }
 
 async function getTextFromPage(page) {
+    /**
+     * This function gets the text content of all text frames on a page.
+     * @param {Page} page - The page to get the text content from.
+     * @returns {Promise} - A promise that resolves with the text content of all text frames on the page.
+     */
     var textFrames = page.textFrames;
     var combinedText = '';
     for (var i = 0; i < textFrames.length; i++) {
@@ -156,19 +191,34 @@ async function getTextFromPage(page) {
     return combinedText;
 }
 
-
 async function wordCount(text) {
+    /**
+     * This function counts the number of words in a string.
+     * @param {string} text - The string to count the words in.
+     * @returns {Promise} - A promise that resolves with the number of words in the string.
+     */
     var words = text.replace(/^\s+|\s+$/g, '').split(/\s+/);
     return words.length;
 }
 
 async function capTextAtWords(text, wordLimit) {
+    /**
+     * This function caps the number of words in a string.
+     * @param {string} text - The string to cap the number of words in.
+     * @param {number} wordLimit - The maximum number of words to allow in the string.
+     * @returns {Promise} - A promise that resolves with the capped string.
+     */
     var words = text.replace(/^\s+|\s+$/g, '').split(/\s+/);
     var cappedWords = words.slice(0, wordLimit);
     return cappedWords.join(' ');
 }
 
 async function estimateTokens(textFrame) {
+    /**
+     * This function estimates the number of tokens needed to generate text for a text frame.
+     * @param {TextFrame} textFrame - The text frame to estimate the number of tokens for.
+     * @returns {Promise} - A promise that resolves with the estimated number of tokens.
+     */
     var frameWidth = textFrame.geometricBounds[3] - textFrame.geometricBounds[1];
     var frameHeight = textFrame.geometricBounds[2] - textFrame.geometricBounds[0];
     var fontSize = textFrame.texts.item(0).pointSize;
@@ -192,11 +242,21 @@ async function estimateTokens(textFrame) {
 }
 
 async function getOpenAIApiKey() {
+    /**
+     * This function gets the OpenAI API key.
+     * @returns {Promise} - A promise that resolves with the OpenAI API key.
+     */
     return OPENAI_API_KEY;
 }
 
-
 async function getOpenAICompletion(context, lang, estimatedTokens) {
+    /**
+     * This function generates text using the OpenAI API.
+     * @param {string} context - The context for generating text.
+     * @param {string} lang - The language to generate text in.
+     * @param {number} estimatedTokens - The estimated number of tokens needed to generate text.
+     * @returns {Promise} - A promise that resolves with the generated text.
+     */
     var apiKey = await getOpenAIApiKey();
     var prompt = context.replace(/[\r\n]+/g, ' ') + ' ';
     var completion = '';
@@ -211,6 +271,9 @@ async function getOpenAICompletion(context, lang, estimatedTokens) {
 }
 
 async function completeSelectedFrameText() {
+    /**
+     * This function generates text and adds it to the selected text frame.
+     */
     if (
         app.documents.length === 0 ||
         app.selection.length !== 1 ||

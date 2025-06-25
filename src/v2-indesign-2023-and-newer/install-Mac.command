@@ -1,17 +1,24 @@
 #!/usr/bin/env python3
 
+
+# This script installs the Lorem Chatum script in Adobe InDesign
+# It prompts the user to enter their OpenAI API secret key
+# It then locates the InDesign Scripts Panel folder and installs the script there
+
 import re
 import shutil
 from pathlib import Path
 
 
 def install_indesign_script(file_name):
+    # Prompt user to enter OpenAI API secret key
     print("\n\n\n### LOREM CHATUM\n\n")
     print(
         "Go to https://platform.openai.com/account/api-keys and create an OpenAI API secret key."
     )
     print("\nNow paste the key here and press Enter:")
     openAiKey = input()
+
     # Locate the file in the same folder as the current Python file
     script_path = Path(__file__).parent / file_name
 
