@@ -1,192 +1,291 @@
 # _Lorem Chatum_ for Adobe InDesign
 
-**Script for Adobe InDesign that uses ChatGPT to produce better _lorem ipsum_.** 
-
-_Lorem Chatum_ is a script for Adobe InDesign that uses ChatGPT to generate multilingual, contextually relevant _lorem ipsum_ text. It has two functionalities: fill an empty text frame based on other texts on the page, or extend existing text within a selected frame. 
+**Generate contextually-aware placeholder text in Adobe InDesign using the power of ChatGPT.**
 
 ![_Lorem Chatum_ for Adobe InDesign](./documentation/lorem-chatum.gif)
 
-To use _Lorem Chatum_, you need your own [OpenAI API secret key](https://platform.openai.com/account/api-keys). The usage of the OpenAI API is paid, but it’s cheap. For example, Leo Tolstoy’s “War and Peace” is 1,200+ pages, 500k words, 3M+ characters. In OpenAI terms, it’s 780k tokens. Processing this book with OpenAI’s `gpt-3.5-turbo` model would cost you about US$3 (yes, just three U.S. dollars!) 
+_Lorem Chatum_ is a script for Adobe InDesign that revolutionizes the way you create placeholder text. Instead of traditional static _lorem ipsum_, it leverages OpenAI's ChatGPT (specifically the `gpt-3.5-turbo` model) to generate multilingual, contextually relevant text. This helps you create more realistic and visually cohesive design mockups.
 
-_As of March 2023, the GPT-4 model is much more expensive: it would cost US$900 to process the same book._
+## What it Does
 
-ChatGPT-4 has heavily assisted me in writing this code. 
+_Lorem Chatum_ offers two primary functionalities:
 
----
+1.  **Fill Empty Text Frames:** If you select an empty text frame, the script analyzes other text content on the current InDesign page to understand the context. It then prompts ChatGPT to generate new text that fits this context and the selected frame's language.
+2.  **Extend Existing Text:** If you select a text frame that already contains text, _Lorem Chatum_ uses that existing text as a starting point and asks ChatGPT to continue writing, effectively extending your current content in the same style and language.
 
-## What ChatGPT says about this
+The amount of text generated is intelligently estimated based on the selected text frame's size and its primary font size.
 
-### Taglines
+## Who It's For
 
-Here’s a few ChatGPT-written taglines about this project: 
+This tool is designed for:
 
-> “Unleash the Power of AI-Generated _Lorem Ipsum_ with _Lorem Chatum_ for Adobe InDesign!”
-> 
-> “Elevate Your InDesign Experience with Contextually Rich _Lorem Ipsum_ Text from _Lorem Chatum_!”
-> 
-> “Transform Your Design Process: Discover the AI-Enhanced _Lorem Ipsum_ Revolution with _Lorem Chatum_!”
-> 
-> “Lorem Chatum: Where Cutting-Edge AI Meets Adobe InDesign for Unparalleled _Lorem Ipsum_ Creativity!”
+*   Graphic Designers
+*   Layout Artists
+*   UI/UX Designers working with print or digital layouts in InDesign
+*   Anyone who frequently uses placeholder text and desires something more dynamic and representative than standard _lorem ipsum_.
 
-### Scenarios
+## Why It's Useful
 
-Here’s a few usage scenarios, also written by ChatGPT: 
+*   **Contextual Relevance:** Generates placeholder text that aligns with the existing content on your page, making mockups look more realistic.
+*   **Multilingual Capabilities:** Supports any language that ChatGPT can handle. Simply set the desired language in InDesign's **Character** panel for the selected text frame.
+*   **Improved Design Process:** Helps visualize final layouts more accurately.
+*   **Cost-Effective:** While using the OpenAI API is a paid service, it's generally inexpensive for text generation. For example, processing a volume equivalent to Leo Tolstoy’s "War and Peace" (over 1,200 pages, 780k tokens) with the `gpt-3.5-turbo` model would cost approximately US$3. *(Note: GPT-4 models are significantly more expensive).*
 
-> Let’s say you’re working on a magazine layout with multiple articles on a single page. You’ve completed a few articles, but you still need to fill the remaining empty text frames with placeholder text that matches the style and language of the existing content. With _Lorem Chatum_, you can quickly generate contextually relevant _lorem ipsum_ text, making your layout design process more efficient and visually cohesive.
-> 
-> Or let’s say that you’re designing a multilingual brochure for a global event. You have text in various languages, and you need to create placeholder content that accurately reflects the characteristics of each language. _Lorem Chatum_ allows you to assign a specific language to each text frame, and then generate AI-powered _lorem ipsum_ text that matches the language and style of your actual content, making your design more professional and consistent.
-> 
-> Or imagine that you’re designing a book cover with a quote on the front. You have the beginning of the quote, but you need to extend it to fill the available space on the cover. Using _Lorem Chatum_, you can select the text frame containing the quote, and let the script generate an extended version of the quote that maintains its original style and language. This enables you to quickly create an engaging and visually appealing book cover design without manually searching for additional text.
+## OpenAI API Key Requirement
 
----
+To use _Lorem Chatum_, you **must** have your own OpenAI API secret key.
 
-## Caveats
+1.  **Create an Account:** If you don't have one, sign up at [OpenAI](https://platform.openai.com/).
+2.  **Generate a Secret Key:** Navigate to the [API keys section](https://platform.openai.com/account/api-keys) in your OpenAI account settings and create a new secret key. It will look something like `sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx`.
+3.  **Billing:** You'll also need to set up billing information in your OpenAI account. New accounts often come with some free credits, but sustained use will incur charges based on the amount of text processed (tokens).
 
-The text that _Lorem Chatum_ generates is very authentic and believable. So if you’re working on a real publication and use _Lorem Chatum_ to generate placeholder text that you mix with real text, make sure you yourself keep track of what’s real text and what’s placeholder text! 
-
-As with any AI-generated content, you shouldn’t trust _Lorem Chatum_ with generating ready-to-publish text. Make sure to review the generated text before sharing your publication with others. 
-
----
+This key will be added to the _Lorem Chatum_ script file during installation.
 
 ## Installation
 
-### ➡️ [Download current versions of Lorem Chatum](https://github.com/twardoch/lorem-chatum-for-indesign/archive/refs/heads/main.zip)
+First, download the latest version of the script:
 
-Click the link above to download the current code, then unzip the downloaded `lorem-chatum-for-indesign-main.zip` and navigate into the unzipped folder. Then proceed depending on your InDesign version. 
+➡️ **[Download _Lorem Chatum_ (main.zip)](https://github.com/twardoch/lorem-chatum-for-indesign/archive/refs/heads/main.zip)**
 
-### v2 for Adobe InDesign 2023 and newer 
+After downloading, unzip the `lorem-chatum-for-indesign-main.zip` file and navigate into the unzipped `lorem-chatum-for-indesign-main` folder. The installation steps vary depending on your Adobe InDesign version.
 
-> **Note:** Version 2 of _Lorem Chatum_ is licensed under the [Apache 2.0 License](src/v2-indesign-2023-and-newer/LICENSE.txt).
+### v2 for Adobe InDesign 2023 and Newer (Recommended)
 
-The [`src/v2-indesign-2023-and-newer/`](src/v2-indesign-2023-and-newer/) folder contains a version of _Lorem Chatum_ that uses the new UXP JavaScript scripting for Adobe InDesign 2023 and newer. This is the version that I plan to continue developing. 
+This version uses modern UXP JavaScript and is the actively developed version.
+*   **License:** [Apache 2.0 License](src/v2-indesign-2023-and-newer/LICENSE.txt)
 
-#### Simple installation 
+The `src/v2-indesign-2023-and-newer/` folder contains the script `Lorem-Chatum-v2.idjs` and installers.
 
-Go to [platform.openai.com/account/api-keys](https://platform.openai.com/account/api-keys) and generate a new OpenAI API secret key that starts with `sk-`. Copy the key to your clipboard. 
+**Using Installers (Easiest Method):**
 
-The folder also contains simple installers. Double-click the appropriate `install-` file for your platform (macOS or Windows) and when prompted, paste your OpenAI API key. (I tested the macOS installer, the Windows installer is untested.)
+1.  Have your OpenAI API secret key ready (copied to your clipboard).
+2.  **On macOS:**
+    *   Navigate to the `src/v2-indesign-2023-and-newer/` folder.
+    *   Double-click the `install-Mac.command` file.
+    *   A terminal window will open and prompt you to paste your OpenAI API key. Paste it and press Enter.
+    *   The script will be automatically installed.
+3.  **On Windows:**
+    *   Navigate to the `src/v2-indesign-2023-and-newer/` folder.
+    *   Double-click the `install-Win.bat` file.
+    *   A command prompt window will open and prompt you to paste your OpenAI API key. Paste it and press Enter.
+    *   The script will be automatically installed.
 
-Once _Lorem Chatum_ is installed, start InDesign. Open **Window > Utilities > Scripts**. In the **Scripts** panel, expand the **User** section. The `Lorem-Chatum-v2.idjs` script should be there. 
+**Manual Installation (v2):**
 
-#### Alternative installation 
+1.  Open `src/v2-indesign-2023-and-newer/Lorem-Chatum-v2.idjs` in a plain text editor (like VS Code, Sublime Text, or even Notepad/TextEdit).
+2.  Locate the line:
+    ```javascript
+    const OPENAI_API_KEY = "sk-";
+    ```
+3.  Replace `"sk-"` with your actual OpenAI API secret key, keeping the quotes:
+    ```javascript
+    const OPENAI_API_KEY = "sk-yourActualOpenAIKeyGoesHere";
+    ```
+4.  Save the file.
+5.  Copy the modified `Lorem-Chatum-v2.idjs` file to your InDesign Scripts Panel folder. Common locations:
+    *   **macOS:** `~/Library/Preferences/Adobe InDesign/Version X.X/en_US/Scripts/Scripts Panel/` (replace `Version X.X` and `en_US` with your version and language).
+    *   **Windows:** `%USERPROFILE%\AppData\Roaming\Adobe\InDesign\Version X.X\en_US\Scripts\Scripts Panel\` (replace `Version X.X` and `en_US` with your version and language).
+    *   You can also find this folder by opening InDesign, going to `Window > Utilities > Scripts`, right-clicking on the "User" folder in the Scripts panel, and selecting "Reveal in Finder" (macOS) or "Reveal in Explorer" (Windows).
 
-Alternatively, open the `Lorem-Chatum-v2.idjs` script in a plain-text editor and put your OpenAI API key at the beginning of the script in the indicated place. Save the file, then put the modified script into the appropriate location where you have InDesign scripts.
+### v1 for Adobe InDesign 2022 and Older (Legacy)
 
-### v1 Adobe InDesign 2022 and older
+This version uses the older ExtendScript and is considered legacy.
+*   **License:** [GNU General Public License v3.0](src/v1-indesign-2022-and-older/LICENSE.txt) (due to a dependency).
 
-> **Note:** Version 1 of _Lorem Chatum_ is licensed under the [GNU General Public License v3.0](src/v1-indesign-2022-and-older/LICENSE.txt), due to a dependency.
+**Manual Installation (v1):**
 
-The [`src/v1-indesign-2022-and-older`](src/v1-indesign-2022-and-older) folder contains version 1.0 of _Lorem Chatum_ that uses the old ExtendScript scripting for Adobe InDesign 2022 and older. I no longer plan to develop this version, but as of March 2023, it has largely the same functionality as version 2. 
-
-#### Installation 
-
-1. Go to [platform.openai.com/account/api-keys](https://platform.openai.com/account/api-keys) and generate a new OpenAI API secret key that starts with `sk-`. Copy the key to your clipboard. 
-2. Open the `Lorem-Chatum-v1.jsx` script in a plain-text editor and put your OpenAI API key at the beginning of the script in the indicated place. Save the file. 
-3. Put the modified script into the appropriate location where you have InDesign scripts.
-
----
+1.  Open `src/v1-indesign-2022-and-older/Lorem-Chatum-v1.jsx` in a plain text editor.
+2.  Locate the line:
+    ```javascript
+    const OPENAI_API_KEY = 'sk-';
+    ```
+3.  Replace `'sk-'` with your actual OpenAI API secret key, keeping the quotes:
+    ```javascript
+    const OPENAI_API_KEY = 'sk-yourActualOpenAIKeyGoesHere';
+    ```
+4.  Save the file.
+5.  Copy the modified `Lorem-Chatum-v1.jsx` file to your InDesign Scripts Panel folder (see locations mentioned in the v2 manual installation section).
 
 ## Usage
 
-_Lorem Chatum_ in both editions has two functionalities: 
+Once installed (and after restarting InDesign if it was running during installation):
 
-1. If you select an **empty text frame** and you run the script, ChatGPT will fill the frame with text, based on **other texts on the current page**. 
-2. If you select a frame that **has some text** and you run the script, ChatGPT will make the existing text longer, but will disregard other texts on the page. 
+1.  Open Adobe InDesign.
+2.  Go to **Window > Utilities > Scripts**. This will open the Scripts panel.
+3.  In the Scripts panel, expand the **User** section. You should see `Lorem-Chatum-v2.idjs` or `Lorem-Chatum-v1.jsx` listed.
 
-You can repeat the process on the same frame. The approximate length of the text completion depends on the size of the text frame, and on its main font size. Set the main language of the text frame in the **Character** panel to choose the language in which ChatGPT will write the text. 
+**Scenario 1: Filling an Empty Text Frame**
 
-### _Lorem Chatum_ in an empty text frame
+1.  Ensure you have some other text frames on your current page that contain text. This text will provide context.
+2.  Create a new, empty text frame where you want the generated text.
+3.  Select the empty text frame with the **Selection Tool** (the black arrow).
+4.  **Important:** Set the desired language for the generated text. Select the text frame, then go to the **Character** panel (`Window > Type & Tables > Character`) and choose the language from the language dropdown menu.
+5.  In the Scripts panel, double-click the `Lorem-Chatum` script.
+6.  A progress indicator may appear. The script will:
+    *   Gather text from other frames on the current page (up to about 500 words).
+    *   Estimate the required length based on the frame size.
+    *   Send this context to ChatGPT, asking it to generate text in the specified language.
+    *   Place the generated text into your selected empty frame.
 
-1. Make sure you have some text frames on your current page that have some text. 
-2. Create an empty text frame (that has no text). 
-3. Assign a language to the text frame in the **Character** panel. 
-4. Select the frame with the **Selection Tool**. 
-5. Double-click `Lorem-Chatum` (`-v2.idjs` or `-v1.jsx`) in the **Scripts** panel. 
-6. The script gathers the text from the other text frames on the current page. 
-7. The script sends that text to ChatGPT and asks it to complete the text in the language selected in the **Character** panel. The length of the text completion is estimated based on the size of the text frame. 
-8. The script puts the result into the selected text frame. 
+**Scenario 2: Extending Existing Text in a Frame**
 
-### _Lorem Chatum_ in a text frame that has text
+1.  Select a text frame that already contains some text.
+2.  **Important:** Ensure the language of the existing text (and the desired language for continuation) is set correctly in the **Character** panel.
+3.  In the Scripts panel, double-click the `Lorem-Chatum` script.
+4.  The script will:
+    *   Take the existing text from the selected frame.
+    *   Estimate how much more text is needed to fill the frame.
+    *   Send the existing text to ChatGPT, asking it to continue writing in the same style and language.
+    *   Append the generated text to the existing content in the frame.
 
-1. Select a text frame that has some text with the **Selection Tool**.
-2. Double-click `Lorem-Chatum` in the **Scripts** panel. 
-3. The script sends that text to ChatGPT and asks it to complete the text in the language selected in the **Character** panel. The length of the text completion is estimated based on the size of the text frame. 
-4. The script adds the result to the text of the selected frame. 
-5. To get additional text, enlarge the text frame, and double-click the script again. 
+You can repeat the process on the same frame. If you want more text in a frame that was filled, simply make the text frame larger and run the script again on that frame.
 
----
+## Caveats
 
-## Contributing / Future
-
-### v2 for Adobe InDesign 2023 and newer
-
-Version 2 is written using modern ES6 and uses the [Adobe InDesign UXP](https://developer.adobe.com/indesign/uxp/) scripting API introduced in late 2022. ES6 has support for JSON and https API calls, so no polyfills were necessary. 
-
-I’d like to continue working on this version, and contributions are welcome. Keep in mind that I’m not a proficient JS developer, so I cannot implement wishes you may have. But if you propose a pull request yourself, I may consider it. 
-
-Some ideas for future work (in no particular order) include: 
-
-- [ ] Turning the script into a plugin once InDesign supports UXP plugins.
-- [ ] Improving the UI.
-- [ ] Adding an easier ability to enter the OpenAI API key, which is then stored using the [Key-Value Storage](https://developer.adobe.com/xd/uxp/uxp/reference-js/Modules/uxp/Key-Value%20Storage/SecureStorage/) (this won’t work if the code is a script, but may work once the code becomes a plugin.)
-- [ ] Adding more types of prompting.
-- [ ] Improving the estimated token length.
-- [ ] Adding a functionality of translation if two frames are selected: one empty (target) and one full (source).
-- [ ] Adding a functionality to shorten/summarize the text to get rid of a frame overflow.
-
-### v1 for Adobe InDesign 2022 and older
-
-Version 1 is written in old ExtendScript, which cannot natively process JSON or make https API calls. 
-
-The code includes “polyfills” for both functionalities. For simplicity of packaging, the polyfills are included directly into the script code. 
-
-I consider this version “as is”, and “end-of-life”. I don’t plan to accept contributions to this version.
+*   **Believability:** The text generated by _Lorem Chatum_ can be very authentic and believable. If you're mixing it with real content, ensure you have a system to distinguish placeholder text from final copy.
+*   **Fact-Checking:** As with all AI-generated content, do not assume the text is factually accurate or ready for publication without review. It's for placeholder and layout purposes.
+*   **API Costs:** While generally low, monitor your OpenAI API usage and associated costs, especially if using the script extensively.
 
 ---
 
-## Authors & License
+## Technical Details
 
-- Copyright (c) 2023 Adam Twardoch.
-- Version 1 of the code was written with significant assistance from ChatGPT-4.
+This section delves into the inner workings of _Lorem Chatum_ and provides guidelines for contributors.
 
-### v2 for Adobe InDesign 2023 and newer
+### How the Code Works
 
-- Version 2 of _Lorem Chatum_ is licensed under the [Apache 2.0 License](src/v2-indesign-2023-and-newer/LICENSE.txt).
+While v1 (ExtendScript) and v2 (UXP) are implemented differently due to their respective environments, the core logic for interacting with InDesign and OpenAI is conceptually similar.
 
-### v1 for Adobe InDesign 2022 and older
+**Core Logic (Conceptual):**
 
-- Version 1 of _Lorem Chatum_ is licensed under the [GNU General Public License v3.0](src/v1-indesign-2022-and-older/LICENSE.txt), due to a dependency.
-- For JSON processing, _Lorem Chatum_ v1 includes the [standalone JSON](https://github.com/indiscripts/extendscript/tree/master/JSON) code, copyright (c) 2017-2022 [Marc Autret](https://indiscripts.com/), licensed under the MIT license.  
-- For https API calls, _Lorem Chatum_ v1 includes the [Restix](https://github.com/grefel/restix/blob/master/restix.jsx) code by [Gregor Fellenz](http://www.publishingx.de), licensed under the GNU General Public License v3.0. This makes the entire code GPL3.
+1.  **Document & Selection Validation:**
+    *   Checks if a document is open.
+    *   Verifies that a single text frame is selected.
+    *   Displays an alert if these conditions aren't met.
 
---- 
+2.  **Context Acquisition:**
+    *   **Empty Text Frame:** If the selected frame `contents` is empty, the script iterates through all other text frames on the `activePage`. It concatenates their contents to form a context string. This context is capped at approximately the first 500 words to stay within reasonable limits for the OpenAI prompt.
+    *   **Non-Empty Text Frame:** If the selected frame already contains text, its `contents` are used directly as the prompt for OpenAI.
 
-## Other notes
+3.  **Language Determination:**
+    *   The script reads the language applied to the first character (or the whole text if uniform) of the selected text frame: `textFrame.texts[0].appliedLanguage.name`. This name (e.g., "English: USA", "Polski") is parsed to extract the base language name (e.g., "English", "Polish") which is then sent to ChatGPT.
 
-### A few words about writing code together with ChatGPT
+4.  **Token Estimation for OpenAI API:**
+    *   To tell ChatGPT roughly how much text to generate, the script estimates the capacity of the selected text frame. This is a heuristic based on:
+        *   The frame's geometric bounds (width and height).
+        *   The point size of the text (`textFrame.texts[0].pointSize`).
+        *   An average character width (approximated as `fontSize * 0.6`).
+        *   An average line height (approximated as `fontSize * 1.2`).
+    *   From these, it estimates the number of characters the frame can hold. This character count is then used as a loose proxy for `max_tokens`.
+    *   The final `max_tokens` sent to the API is capped (e.g., at 4095 for `gpt-3.5-turbo`) to prevent errors and excessive costs. *Note: This estimation is approximate and primarily guides the length of the AI's response.*
 
-[2023-03-28] It was an interesting experience. I’m not a JavaScript developer **at all**. I know Python, I can imagine how a program should work and I can explain it in natural language. So ChatGPT was a good candidate. 
+5.  **OpenAI API Interaction (`gpt-3.5-turbo` model):**
+    *   The script makes a POST request to `https://api.openai.com/v1/chat/completions`.
+    *   **System Prompt:** A directive is sent to guide the AI's behavior:
+        ```
+        "Write an essay in [lang], to the max length, by continuing the prompt. Do not ask anything, do not add anything that is not requested."
+        ```
+        where `[lang]` is the determined language.
+    *   **User Prompt:** The acquired context (from page or frame) is sent as the user's message.
+    *   **Key API Parameters Used:**
+        *   `model`: "gpt-3.5-turbo"
+        *   `messages`: Array containing the system and user prompts.
+        *   `temperature`: `1` (for creative responses).
+        *   `max_tokens`: The estimated number of tokens.
+        *   `top_p`: `1`.
+        *   `n`: `1` (requesting a single completion).
+        *   `frequency_penalty`: `0`.
+        *   `presence_penalty`: `0`.
 
-The code is not very complicated, but what makes the process complicated is that you’re working within several frameworks or APIs. Translating ideas into specific code is difficult if you lack experience in a specific API. Here, ChatGPT was pretty knowledgeable about the old ExtendScript API for InDesign, and could suggest correct code right away. So the first iteration was created in ExtendScript (that’s v1 now). 
+6.  **Text Insertion:**
+    *   The `content` from ChatGPT's response (`responseData.choices[0].message.content`) is retrieved.
+    *   A leading space is typically added, and any leading newline is removed.
+    *   This generated text is appended to the `contents` of the selected InDesign text frame.
 
-However, it turned out that ExtendScript was too old to know anything about JSON, and especially about using https to connect to the OpenAI API. Fortunately, I was able to find some off-the-shelf code on Github that provided “polyfills” for that. Yet overall, I didn’t want the code to rely on the polyfills if I were to extend it later. 
+**Version-Specific Implementations:**
 
-Fortunately again, I found that Adobe just recently (in late 2022) released UXP-based scripting for InDesign. I didn’t know much about UXP, but I was glad to see that it’s a modern ES6 implementation. 
+*   **v2 (`Lorem-Chatum-v2.idjs` - UXP for InDesign 2023+)**
+    *   **Technology:** Modern ECMAScript 6+ (ES6+) JavaScript, running in Adobe's UXP (Unified Extensibility Platform) environment.
+    *   **API Calls:** Uses the native `fetch` API for HTTPS requests to the OpenAI endpoint.
+        ```javascript
+        let response = await fetch('https://api.openai.com/v1/chat/completions', { /* ...options... */ });
+        ```
+    *   **JSON Handling:** Uses native `JSON.stringify()` to prepare the request body and `await response.json()` to parse the OpenAI API's JSON response.
+    *   **User Interface (UI):**
+        *   Dialogs for alerts and progress messages are created dynamically using UXP's DOM-like APIs (`document.createElement("dialog")`) and Spectrum UXP components (`<sp-body>`, `<sp-button>`, `<sp-text>`).
+            ```javascript
+            const dialog = document.createElement("dialog");
+            dialog.innerHTML = \`...\`; // Spectrum UXP components
+            document.body.appendChild(dialog);
+            dialog.showModal();
+            // dialog.close();
+            ```
+        *   The script detects InDesign's UI brightness (`app.generalPreferences.uiBrightnessPreference`) to set dialog text color (black/white) for better visibility.
+    *   **Measurement Units:** Before performing geometric calculations for token estimation, the script temporarily sets the document's `horizontalMeasurementUnits`, `verticalMeasurementUnits`, `typographicMeasurementUnits`, and `textSizeMeasurementUnits` to `MeasurementUnits.points`. Original settings are restored afterwards.
+    *   **Installers:**
+        *   `install-Mac.command`: A Python 3 script. It interactively prompts for the OpenAI API key. It locates the latest InDesign version's Scripts Panel folder (e.g., `~/Library/Preferences/Adobe InDesign/Version X.X/en_US/Scripts/Scripts Panel/`) by scanning directories and sorting by version number. It then reads the `Lorem-Chatum-v2.idjs` template, replaces the placeholder API key, and writes the new file to the target Scripts Panel folder.
+        *   `install-Win.bat`: A Windows Batch script. It also prompts for the API key. It finds the latest InDesign version folder in `%USERPROFILE%\AppData\Roaming\Adobe\InDesign\`. It copies `Lorem-Chatum-v2.idjs` to the target Scripts Panel folder and then uses a `for` loop with `find /n /v ""` to read the script line by line, replacing the API key placeholder, and writing to a temporary file, which then replaces the original.
 
-The caveat was that ChatGPT didn’t know much about the UXP APIs. So it took me quite some time and trial-and-error to port the code to UXP. I especially found these resources useful: 
+*   **v1 (`Lorem-Chatum-v1.jsx` - ExtendScript for InDesign 2022 and older)**
+    *   **Technology:** Legacy ExtendScript (a JavaScript ES3 dialect).
+    *   **API Calls:** Relies on the embedded `restix.jsx` library by Gregor Fellenz. `Restix` acts as a bridge, using VBScript (`MSXML2.ServerXMLHTTP.6.0` or `ADODB.Stream`) on Windows and AppleScript (wrapping `curl`) on macOS to perform the actual HTTPS request to OpenAI.
+    *   **JSON Handling:** Uses the embedded `json.jsx` library by Marc Autret. This provides `JSON.lave()` (similar to `JSON.stringify()`) and `JSON.eval()` (similar to `JSON.parse()`, but using `eval()`) for constructing the request body and parsing the response.
+    *   **User Interface (UI):** Uses standard ExtendScript `alert()` for messages. No progress dialog.
 
-- https://developer.adobe.com/indesign/uxp/
-- https://github.com/AdobeDocs/uxp-indesign/tree/main/src/pages/uxp-scripting-samples
-- https://github.com/RolandDreger/indesign-uxp-script-snippets
+**API Key Management:**
 
-I also appreciated the fact that the documentation for InDesign UXP stuff is on Github: 
+*   In both versions, the OpenAI API key is stored directly as a string constant within the script file (`OPENAI_API_KEY = "sk-..."`).
+*   The installer scripts for v2 automate the process of writing this key into the script. For v1 or manual v2 installation, the user must edit the script file directly.
+*   **Security Note:** Storing API keys directly in client-side scripts is generally not recommended for web applications. However, in the context of a local InDesign script run by the user, it's a pragmatic approach for ease of setup. Users should still protect their API keys.
 
-- https://github.com/AdobeDocs/uxp-indesign/blob/main/src/pages/recipes/index.md
-- https://github.com/AdobeDocs/indesign-18-dom/tree/main/src/pages/api
-- https://github.com/AdobeDocs/uxp-indesign-18-uxp/tree/main/src/pages/uxp-api
+### Coding and Contributing
 
-I ended up pasting some of these samples and documents into ChatGPT so that it would pick up on the new coding styles. That has proved effective. I think if one were to create an embedding of this documentation (or in fact of both the old and new documentations), or better still, fine-tune a custom model, that could facilitate automatic porting old ExtendScript code into UXP code. 
+We welcome contributions to _Lorem Chatum_, especially for the v2 (UXP) version!
 
-One thing where ChatGPT had a much easier job with UXP than the old ExtendScript was creating a dialog. Since the dialog is HTML, with standards-compliant CSS and JS, ChatGPT can pull from all its knowledge of pre-existing code. 
+**Project Structure:**
 
-Overall, what’s needed is to teach ChatGPT some essential bits of the new API, and it can help porting older code into UXP, and can help writing new code straightaway. 
+*   `src/v1-indesign-2022-and-older/`: Contains the legacy ExtendScript version (`.jsx`).
+*   `src/v2-indesign-2023-and-newer/`: Contains the modern UXP JavaScript version (`.idjs`) and its installers.
+*   `documentation/`: Contains assets like the demo GIF.
+
+**v2 (Adobe InDesign 2023 and newer - Active Development):**
+
+*   This is the primary version for future development and improvements.
+*   **License:** [Apache 2.0 License](src/v2-indesign-2023-and-newer/LICENSE.txt).
+*   **Contributions:**
+    *   Please submit Pull Requests to the `main` branch.
+    *   Try to follow the existing coding style and patterns.
+    *   Ensure your changes work reliably in recent versions of InDesign (2023+).
+*   **Development Tips:**
+    *   Familiarize yourself with Adobe UXP: [InDesign UXP Documentation](https://developer.adobe.com/indesign/uxp/).
+    *   The UXP Developer Tool can be helpful for debugging.
+    *   Modern JavaScript (ES6+) features can be used.
+
+**v1 (Adobe InDesign 2022 and older - Legacy):**
+
+*   This version is considered "end-of-life" and is not planned for active development. It is provided for users of older InDesign versions.
+*   **License:** [GNU General Public License v3.0](src/v1-indesign-2022-and-older/LICENSE.txt). This is due to its dependency on `Restix.jsx`, which is GPLv3 licensed. The `json.jsx` polyfill is MIT licensed.
+
+**Future Ideas (Contributions Welcome!):**
+
+The original author (Adam Twardoch, with help from ChatGPT-4 for v1) envisioned several potential enhancements:
+
+*   [ ] **UXP Plugin:** Convert the v2 script into a full UXP plugin for better integration and potential panel UI.
+*   [ ] **Improved UI:** Develop a more interactive UXP dialog/panel for settings (e.g., selecting different OpenAI models, adjusting temperature, choosing prompt styles).
+*   [ ] **Secure API Key Storage:** If developed as a UXP plugin, explore UXP's [SecureStorage](https://developer.adobe.com/xd/uxp/uxp/reference-js/Modules/uxp/Key-Value%20Storage/SecureStorage/) for storing the OpenAI API key more securely than plain text in the script.
+*   [ ] **More Prompting Types:** Allow users to select different styles of text generation (e.g., "more formal," "more creative," "bullet points").
+*   [ ] **Improved Token Estimation:** Refine the logic for estimating the number of tokens to better match the frame's capacity.
+*   [ ] **Translation Functionality:** Add a feature where if two frames are selected (one with source text, one empty target frame), the script translates the text.
+*   [ ] **Summarization/Shortening:** Add functionality to shorten or summarize text within a frame to resolve overflows.
+
+### Author and Acknowledgements
+
+*   **Author:** Adam Twardoch
+*   The initial version (v1, ExtendScript) was written with significant assistance from ChatGPT-4.
+*   **v1 Dependencies:**
+    *   JSON processing: [standalone JSON](https://github.com/indiscripts/extendscript/tree/master/JSON) code by Marc Autret (MIT License).
+    *   HTTPS API calls: [Restix](https://github.com/grefel/restix/blob/master/restix.jsx) code by Gregor Fellenz (GNU GPL v3.0).
+---
+
+*The original README included some taglines and scenarios written by ChatGPT. These have been omitted in this version for brevity but can be found in the project's commit history if desired.*
+*The section "A few words about writing code together with ChatGPT" from the original README has also been omitted here but can be found in the commit history.*
