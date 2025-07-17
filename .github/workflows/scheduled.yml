@@ -1,0 +1,84 @@
+name: Scheduled Maintenance
+
+on:
+  schedule:
+    # Run every Sunday at 2 AM UTC
+    - cron: '0 2 * * 0'
+  workflow_dispatch:  # Allow manual triggering
+
+jobs:
+  dependency-check:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Use Node.js 20.x
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20.x
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Check for outdated dependencies
+      run: npm outdated --json > outdated.json || true
+    
+    - name: Run security audit
+      run: npm audit --json > audit.json || true
+    
+    - name: Upload dependency reports
+      uses: actions/upload-artifact@v4
+      with:
+        name: dependency-reports-${{ github.run_number }}
+        path: |
+          outdated.json
+          audit.json
+        retention-days: 30
+    
+    - name: Check for critical vulnerabilities
+      run: |
+        CRITICAL_VULNS=$(npm audit --audit-level=critical --json | jq '.metadata.vulnerabilities.critical // 0')
+        if [ "$CRITICAL_VULNS" -gt 0 ]; then
+          echo "::error::Found $CRITICAL_VULNS critical vulnerabilities"
+          exit 1
+        fi
+
+  test-compatibility:
+    runs-on: ${{ matrix.os }}
+    
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        node-version: [18.x, 20.x]
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Run tests
+      run: npm test
+    
+    - name: Test build process
+      run: npm run build
+    
+    - name: Test installers (Unix)
+      if: runner.os != 'Windows'
+      run: |
+        chmod +x dist/installers/*Mac.command
+        echo "Installer files are executable"
+    
+    - name: Test installers (Windows)
+      if: runner.os == 'Windows'
+      run: |
+        dir dist\installers\
+        echo "Installer files exist"

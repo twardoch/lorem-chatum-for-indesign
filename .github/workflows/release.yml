@@ -1,0 +1,110 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    
+    - name: Use Node.js 20.x
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20.x
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Run tests
+      run: npm test
+    
+    - name: Run integration tests
+      run: npm run test:integration
+    
+    - name: Update version in source files
+      run: npm run version
+    
+    - name: Build project
+      run: npm run build
+    
+    - name: Get version from tag
+      id: get_version
+      run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
+    
+    - name: Create release notes
+      id: release_notes
+      run: |
+        echo "RELEASE_NOTES<<EOF" >> $GITHUB_OUTPUT
+        echo "## Changes in v${{ steps.get_version.outputs.VERSION }}" >> $GITHUB_OUTPUT
+        echo "" >> $GITHUB_OUTPUT
+        echo "### Features and Improvements" >> $GITHUB_OUTPUT
+        echo "- Updated to version ${{ steps.get_version.outputs.VERSION }}" >> $GITHUB_OUTPUT
+        echo "- Built with latest dependencies" >> $GITHUB_OUTPUT
+        echo "- Automated release process" >> $GITHUB_OUTPUT
+        echo "" >> $GITHUB_OUTPUT
+        echo "### Installation" >> $GITHUB_OUTPUT
+        echo "1. Download the zip file below" >> $GITHUB_OUTPUT
+        echo "2. Extract the contents" >> $GITHUB_OUTPUT
+        echo "3. Run the appropriate installer for your platform:" >> $GITHUB_OUTPUT
+        echo "   - macOS: \`lorem-chatum-v${{ steps.get_version.outputs.VERSION }}-install-Mac.command\`" >> $GITHUB_OUTPUT
+        echo "   - Windows: \`lorem-chatum-v${{ steps.get_version.outputs.VERSION }}-install-Win.bat\`" >> $GITHUB_OUTPUT
+        echo "" >> $GITHUB_OUTPUT
+        echo "### What's included" >> $GITHUB_OUTPUT
+        echo "- Lorem Chatum v1 (for InDesign 2022 and older)" >> $GITHUB_OUTPUT
+        echo "- Lorem Chatum v2 (for InDesign 2023 and newer)" >> $GITHUB_OUTPUT
+        echo "- Automated installers for both platforms" >> $GITHUB_OUTPUT
+        echo "- Complete documentation" >> $GITHUB_OUTPUT
+        echo "EOF" >> $GITHUB_OUTPUT
+    
+    - name: Create GitHub Release
+      uses: softprops/action-gh-release@v1
+      with:
+        tag_name: v${{ steps.get_version.outputs.VERSION }}
+        name: Lorem Chatum v${{ steps.get_version.outputs.VERSION }}
+        body: ${{ steps.release_notes.outputs.RELEASE_NOTES }}
+        draft: false
+        prerelease: false
+        files: |
+          dist/*.zip
+          dist/installers/*
+        token: ${{ secrets.GITHUB_TOKEN }}
+    
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: release-artifacts-v${{ steps.get_version.outputs.VERSION }}
+        path: |
+          dist/
+          build/
+        retention-days: 90
+
+  publish-npm:
+    needs: build
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/v')
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Use Node.js 20.x
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20.x
+        registry-url: 'https://registry.npmjs.org'
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Publish to NPM
+      run: npm publish --access public
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      continue-on-error: true  # Don't fail if package already exists
