@@ -1,0 +1,56 @@
+{
+  "name": "lorem-chatum-for-indesign",
+  "version": "2.0.0",
+  "description": "Generate contextually-aware placeholder text in Adobe InDesign using the power of ChatGPT",
+  "main": "src/v2-indesign-2023-and-newer/Lorem-Chatum-v2.idjs",
+  "scripts": {
+    "test": "node test/run-tests.js",
+    "test:watch": "node test/run-tests.js --watch",
+    "test:integration": "node test/integration-test.js",
+    "lint": "eslint src/ test/ --ext .js,.jsx,.idjs",
+    "lint:fix": "eslint src/ test/ --ext .js,.jsx,.idjs --fix",
+    "build": "node scripts/build.js",
+    "build:multiplatform": "node scripts/build-multiplatform.js",
+    "build:artifacts": "node scripts/build-artifacts.js",
+    "release": "node scripts/release.js",
+    "version": "node scripts/version.js",
+    "prepare": "node scripts/prepare.js",
+    "dev": "node scripts/dev.js",
+    "clean": "node scripts/dev.js clean"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/twardoch/lorem-chatum-for-indesign.git"
+  },
+  "keywords": [
+    "adobe",
+    "indesign",
+    "script",
+    "placeholder",
+    "text",
+    "chatgpt",
+    "lorem-ipsum"
+  ],
+  "author": "Adam Twardoch",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/twardoch/lorem-chatum-for-indesign/issues"
+  },
+  "homepage": "https://github.com/twardoch/lorem-chatum-for-indesign#readme",
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "fs-extra": "^11.2.0",
+    "chalk": "^5.3.0",
+    "archiver": "^6.0.1",
+    "semver": "^7.6.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "files": [
+    "src/",
+    "scripts/",
+    "LICENSE.txt",
+    "README.md"
+  ]
+}

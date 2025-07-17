@@ -1,0 +1,61 @@
+{
+  "env": {
+    "node": true,
+    "es6": true
+  },
+  "extends": [
+    "eslint:recommended"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "sourceType": "module"
+  },
+  "rules": {
+    "no-console": "off",
+    "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
+    "prefer-const": "error",
+    "no-var": "error",
+    "eqeqeq": "error",
+    "curly": "error",
+    "brace-style": ["error", "1tbs"],
+    "comma-dangle": ["error", "never"],
+    "quotes": ["error", "single", { "avoidEscape": true }],
+    "semi": ["error", "always"],
+    "indent": ["error", 2],
+    "no-trailing-spaces": "error",
+    "eol-last": "error"
+  },
+  "overrides": [
+    {
+      "files": ["src/**/*.jsx"],
+      "env": {
+        "node": false,
+        "es6": false
+      },
+      "parserOptions": {
+        "ecmaVersion": 3,
+        "sourceType": "script"
+      },
+      "rules": {
+        "no-var": "off",
+        "prefer-const": "off",
+        "no-undef": "off"
+      }
+    },
+    {
+      "files": ["src/**/*.idjs"],
+      "env": {
+        "node": false,
+        "browser": true,
+        "es6": true
+      },
+      "parserOptions": {
+        "ecmaVersion": 2020,
+        "sourceType": "script"
+      },
+      "rules": {
+        "no-undef": "off"
+      }
+    }
+  ]
+}
