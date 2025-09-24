@@ -1,0 +1,2662 @@
+Project Structure:
+📁 lorem-chatum-for-indesign
+├── 📁 documentation
+├── 📁 scripts
+│   ├── 📄 build-artifacts.js
+│   ├── 📄 build-multiplatform.js
+│   ├── 📄 build.js
+│   ├── 📄 dev.js
+│   ├── 📄 prepare.js
+│   ├── 📄 release.js
+│   └── 📄 version.js
+├── 📁 src
+│   ├── 📁 v1-indesign-2022-and-older
+│   │   ├── 📄 LICENSE.txt
+│   │   └── 📄 Lorem-Chatum-v1.jsx
+│   └── 📁 v2-indesign-2023-and-newer
+│       ├── 📄 install-Mac.command
+│       ├── 📄 install-Win.bat
+│       ├── 📄 LICENSE.txt
+│       └── 📄 Lorem-Chatum-v2.idjs
+├── 📁 test
+│   ├── 📄 integration-test.js
+│   └── 📄 run-tests.js
+├── 📄 .gitignore
+├── 📄 DEVELOPMENT.md
+├── 📄 INSTALLATION.md
+├── 📄 LICENSE.txt
+├── 📄 package.json
+└── 📄 README.md
+
+
+<documents>
+<document index="1">
+<source>.eslintrc.json</source>
+<document_content>
+{
+  "env": {
+    "node": true,
+    "es6": true
+  },
+... (file content truncated to first 5 lines)
+</document_content>
+</document>
+
+<document index="2">
+<source>.gitignore</source>
+<document_content>
+# Dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build outputs
+build/
+dist/
+*.tgz
+
+# Test outputs
+test/temp/
+coverage/
+
+# IDE files
+.DS_Store
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+Thumbs.db
+desktop.ini
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Logs
+logs/
+*.log
+
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Temporary files
+tmp/
+temp/
+.tmp/
+
+# Editor backups
+*~
+.#*
+\#*#
+
+# Package lock files (we use npm)
+package-lock.json
+yarn.lock
+
+# API keys (security)
+**/OPENAI_API_KEY*
+**/*api-key*
+**/*secret*
+
+# Build artifacts
+*.zip
+*.tar.gz
+*.tar.bz2
+*.dmg
+*.pkg
+*.deb
+*.rpm
+
+# InDesign files (for testing)
+*.indd
+*.idml
+*.inx
+
+# Adobe files
+*.jsx.bak
+*.idjs.bak
+
+# Python (legacy from previous gitignore)
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+develop-eggs/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+#  Usually these files are written by a python script from a template
+#  before PyInstaller builds the exe, so as to inject date/other infos into it.
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# Flask stuff:
+instance/
+.webassets-cache
+
+# Scrapy stuff:
+.scrapy
+
+# Sphinx documentation
+docs/_build/
+
+# PyBuilder
+target/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
+
+# pyenv
+.python-version
+
+# pipenv
+#   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
+#   However, in case of collaboration, if having platform-specific dependencies or dependencies
+#   having no cross-platform support, pipenv may install dependencies that don't work, or not
+#   install all needed dependencies.
+#Pipfile.lock
+
+# PEP 582; used by e.g. github.com/David-OConnor/pyflow
+__pypackages__/
+
+# Celery stuff
+celerybeat-schedule
+celerybeat.pid
+
+# SageMath parsed files
+*.sage.py
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# Rope project settings
+.ropeproject
+
+# mkdocs documentation
+/site
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+
+</document_content>
+</document>
+
+<document index="3">
+<source>DEVELOPMENT.md</source>
+<document_content>
+# Development Guide
+
+This guide explains how to set up the development environment and contribute to Lorem Chatum.
+
+## Development Setup
+
+### Prerequisites
+
+- Node.js 16 or newer
+- npm (comes with Node.js)
+- Git
+
+### Initial Setup
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/twardoch/lorem-chatum-for-indesign.git
+   cd lorem-chatum-for-indesign
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Prepare the development environment**
+   ```bash
+   npm run prepare
+   ```
+
+## Project Structure
+
+```
+lorem-chatum-for-indesign/
+├── src/
+│   ├── v1-indesign-2022-and-older/    # Legacy ExtendScript version
+│   │   ├── Lorem-Chatum-v1.jsx
+│   │   └── LICENSE.txt
+│   └── v2-indesign-2023-and-newer/    # Modern UXP version
+│       ├── Lorem-Chatum-v2.idjs
+│       ├── install-Mac.command
+│       ├── install-Win.bat
+│       └── LICENSE.txt
+├── scripts/                           # Build and development scripts
+│   ├── build.js                      # Main build script
+│   ├── build-multiplatform.js        # Platform-specific builds
+│   ├── build-artifacts.js            # Artifact generation
+│   ├── version.js                    # Version management
+│   ├── release.js                    # Release automation
+│   ├── prepare.js                    # Dev environment setup
+│   └── dev.js                        # Development utilities
+├── test/                             # Test suite
+│   ├── run-tests.js                  # Main test runner
+│   └── integration-test.js           # Integration tests
+├── .github/workflows/                # GitHub Actions
+│   ├── ci.yml                        # Continuous Integration
+│   ├── release.yml                   # Release automation
+│   └── scheduled.yml                 # Scheduled maintenance
+├── build/                            # Build output (gitignored)
+├── dist/                             # Distribution files (gitignored)
+├── package.json                      # Project configuration
+├── README.md                         # Main documentation
+├── INSTALLATION.md                   # Installation guide
+├── DEVELOPMENT.md                    # This file
+└── LICENSE.txt                       # License
+```
+
+## Available Scripts
+
+### Testing
+```bash
+npm test                    # Run all tests
+npm run test:watch          # Run tests in watch mode
+npm run test:integration    # Run integration tests
+```
+
+### Building
+```bash
+npm run build              # Full build process
+npm run build:multiplatform # Build platform-specific packages
+npm run build:artifacts    # Generate release artifacts
+```
+
+### Development
+```bash
+npm run dev test           # Run tests
+npm run dev build          # Build project
+npm run dev version        # Check version
+npm run dev clean          # Clean build artifacts
+```
+
+### Linting
+```bash
+npm run lint               # Check code style
+npm run lint:fix           # Fix code style issues
+```
+
+### Versioning and Release
+```bash
+npm run version            # Update version in source files
+npm run release 2.1.0      # Create and push release tag
+```
+
+## Development Workflow
+
+### Making Changes
+
+1. **Create a feature branch**
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
+
+2. **Make your changes**
+   - Edit source files in `src/`
+   - Add tests if needed
+   - Update documentation
+
+3. **Test your changes**
+   ```bash
+   npm test
+   npm run test:integration
+   ```
+
+4. **Build and verify**
+   ```bash
+   npm run build
+   ```
+
+5. **Commit and push**
+   ```bash
+   git add .
+   git commit -m "feat: your feature description"
+   git push origin feature/your-feature-name
+   ```
+
+6. **Create a pull request**
+
+### Testing
+
+The project includes comprehensive testing:
+
+- **Unit tests**: Test individual functions and components
+- **Integration tests**: Test the full build process
+- **File validation**: Verify file structure and syntax
+- **Package validation**: Check package.json and dependencies
+
+Tests run automatically on:
+- Every commit (via git hooks)
+- Pull requests (via GitHub Actions)
+- Scheduled maintenance (weekly)
+
+### Building
+
+The build process:
+
+1. **Clean**: Remove old build artifacts
+2. **Copy Source**: Copy source files to build directory
+3. **Version**: Update version numbers in source files
+4. **Package**: Create zip archives
+5. **Installers**: Create platform-specific installers
+6. **Multiplatform**: Build platform-specific packages
+7. **Artifacts**: Generate metadata and release artifacts
+
+### Versioning
+
+The project uses semantic versioning (semver):
+- `MAJOR.MINOR.PATCH` (e.g., 2.1.0)
+- Version is managed through git tags
+- Source files are automatically updated with version numbers
+
+## Code Style
+
+### JavaScript/ExtendScript
+- Use ES6+ features for v2 (UXP)
+- Use ES3 compatible code for v1 (ExtendScript)
+- Follow existing code patterns
+- Add comments for complex logic
+- Use meaningful variable names
+
+### File Headers
+All source files should include:
+```javascript
+// this_file: relative/path/to/file.js
+```
+
+### Documentation
+- Update README.md for user-facing changes
+- Update INSTALLATION.md for installation changes
+- Update this file for development changes
+- Add inline comments for complex code
+
+## Architecture
+
+### V1 (ExtendScript - Legacy)
+- **Target**: InDesign 2022 and older
+- **Engine**: ExtendScript (ES3)
+- **Dependencies**: 
+  - `restix.jsx` for HTTP requests
+  - `json.jsx` for JSON handling
+- **License**: GPL v3.0 (due to dependencies)
+
+### V2 (UXP - Modern)
+- **Target**: InDesign 2023 and newer
+- **Engine**: UXP JavaScript (ES6+)
+- **Features**:
+  - Native `fetch()` API
+  - Async/await support
+  - Modern dialog system
+  - Better error handling
+- **License**: Apache 2.0
+
+### Build System
+- **Node.js**: Build scripts and tooling
+- **GitHub Actions**: CI/CD automation
+- **Semantic versioning**: Git tag-based versioning
+- **Multi-platform**: Windows, macOS, Universal packages
+
+## Contributing
+
+### Bug Reports
+1. Check existing issues first
+2. Create detailed issue with:
+   - Steps to reproduce
+   - Expected vs actual behavior
+   - System information
+   - InDesign version
+
+### Feature Requests
+1. Check existing issues and discussions
+2. Describe the use case
+3. Propose implementation approach
+4. Consider backward compatibility
+
+### Code Contributions
+1. Follow the development workflow above
+2. Add tests for new features
+3. Update documentation
+4. Ensure all tests pass
+5. Follow existing code style
+
+### Documentation
+1. Use clear, concise language
+2. Include code examples
+3. Test instructions on different platforms
+4. Update relevant files (README, INSTALLATION, etc.)
+
+## Release Process
+
+### Automated Release (Recommended)
+```bash
+npm run release 2.1.0
+```
+
+This will:
+1. Update version in package.json and source files
+2. Create and push a git tag
+3. Trigger GitHub Actions to build and create release
+
+### Manual Release
+1. Update version numbers manually
+2. Create git tag: `git tag -a v2.1.0 -m "Release 2.1.0"`
+3. Push tag: `git push origin v2.1.0`
+4. GitHub Actions will handle the rest
+
+### What Happens During Release
+1. **CI runs**: Tests and builds on multiple platforms
+2. **Artifacts created**: Zip files, installers, metadata
+3. **GitHub release**: Created with downloadable assets
+4. **NPM publish**: Package published to npm registry
+
+## Security
+
+### API Key Handling
+- API keys are stored in source files (user responsibility)
+- Never commit API keys to repository
+- Document security considerations clearly
+
+### Dependencies
+- Regular security audits via `npm audit`
+- Automated dependency updates
+- Vulnerability scanning in CI
+
+### Code Review
+- All changes require review
+- Automated security checks
+- Manual verification of sensitive changes
+
+## Troubleshooting
+
+### Common Development Issues
+
+#### Build Failures
+- Check Node.js version (16+)
+- Run `npm install` to update dependencies
+- Check for file permission issues
+
+#### Test Failures
+- Run tests individually to isolate issues
+- Check that all files are present
+- Verify package.json configuration
+
+#### Version Issues
+- Ensure git tags are properly formatted
+- Check that version script has execute permissions
+- Verify git repository is clean
+
+## Getting Help
+
+- **GitHub Issues**: Bug reports and feature requests
+- **Discussions**: General questions and ideas
+- **Discord**: Real-time chat (if available)
+- **Documentation**: Check README and guides first
+
+## License
+
+This project is licensed under the Apache 2.0 License for v2 and GPL v3.0 for v1. See the LICENSE.txt files for details.
+</document_content>
+</document>
+
+<document index="4">
+<source>INSTALLATION.md</source>
+<document_content>
+# Installation Guide
+
+This guide provides detailed instructions for installing Lorem Chatum for Adobe InDesign.
+
+## Prerequisites
+
+- Adobe InDesign 2022 or newer
+- OpenAI API key (get one at https://platform.openai.com/account/api-keys)
+- Your OpenAI account must have billing set up
+
+## Quick Installation
+
+### 1. Download the Latest Release
+
+Go to the [releases page](https://github.com/twardoch/lorem-chatum-for-indesign/releases) and download the appropriate package:
+
+- **Windows**: `lorem-chatum-vX.X.X-windows.zip`
+- **macOS**: `lorem-chatum-vX.X.X-macos.zip`
+- **Universal**: `lorem-chatum-vX.X.X-universal.zip` (all platforms)
+
+### 2. Extract the Archive
+
+Extract the downloaded zip file to a temporary location.
+
+### 3. Run the Installer
+
+#### Windows
+1. Double-click `install-Win.bat`
+2. When prompted, paste your OpenAI API key
+3. Press Enter to continue
+
+#### macOS
+1. Double-click `install-Mac.command`
+2. When prompted, paste your OpenAI API key
+3. Press Enter to continue
+
+### 4. Restart InDesign
+
+If Adobe InDesign was running during installation, restart it to load the new script.
+
+## Manual Installation
+
+If the automated installer doesn't work, you can install manually:
+
+### Step 1: Locate Your Scripts Panel Folder
+
+Open Adobe InDesign and go to:
+- **Window > Utilities > Scripts**
+- Right-click on the "User" folder
+- Select "Reveal in Finder" (macOS) or "Reveal in Explorer" (Windows)
+
+This will open your Scripts Panel folder.
+
+### Step 2: Choose the Right Script Version
+
+- **InDesign 2023 and newer**: Use `Lorem-Chatum-v2.idjs`
+- **InDesign 2022 and older**: Use `Lorem-Chatum-v1.jsx`
+
+### Step 3: Add Your API Key
+
+1. Open the script file in a text editor
+2. Find the line that says:
+   ```javascript
+   const OPENAI_API_KEY = "sk-";
+   ```
+3. Replace `"sk-"` with your actual API key:
+   ```javascript
+   const OPENAI_API_KEY = "sk-your-actual-api-key-here";
+   ```
+4. Save the file
+
+### Step 4: Copy to Scripts Panel
+
+Copy the modified script file to your Scripts Panel folder.
+
+### Step 5: Restart InDesign
+
+Restart Adobe InDesign if it was running.
+
+## Troubleshooting
+
+### Common Issues
+
+#### "Script not found" Error
+- Make sure you copied the script to the correct Scripts Panel folder
+- Restart InDesign after copying the script
+
+#### "API key not valid" Error
+- Verify your API key is correct and starts with "sk-"
+- Make sure your OpenAI account has billing set up
+- Check that you have sufficient credits in your OpenAI account
+
+#### "No text frame selected" Error
+- Select a text frame before running the script
+- Make sure the text frame is not grouped or locked
+
+#### Permission Errors (macOS)
+If you get permission errors with the installer:
+1. Open Terminal
+2. Navigate to the folder containing the installer
+3. Run: `chmod +x install-Mac.command`
+4. Try running the installer again
+
+#### Script Doesn't Appear in Scripts Panel
+- Check that the script file has the correct extension (.idjs for v2, .jsx for v1)
+- Verify you're looking in the "User" folder in the Scripts Panel
+- Try refreshing the Scripts Panel by right-clicking and selecting "Refresh"
+
+### Getting Help
+
+If you continue to have issues:
+
+1. Check the [GitHub Issues](https://github.com/twardoch/lorem-chatum-for-indesign/issues) page
+2. Create a new issue with:
+   - Your operating system
+   - InDesign version
+   - Error message (if any)
+   - Steps you've already tried
+
+## Uninstallation
+
+To remove Lorem Chatum:
+
+1. Open the Scripts Panel folder (Window > Utilities > Scripts > right-click User > Reveal in Finder/Explorer)
+2. Delete the Lorem Chatum script files:
+   - `Lorem-Chatum-v2.idjs`
+   - `Lorem-Chatum-v1.jsx`
+3. Restart InDesign
+
+## Security Notes
+
+- Your API key is stored in plain text in the script file
+- Only install scripts from trusted sources
+- Keep your API key secure and don't share it
+- Monitor your OpenAI usage to avoid unexpected charges
+
+## Version Information
+
+This installation guide is for Lorem Chatum version 2.0.0 and newer. For older versions, refer to the documentation included with your download.
+</document_content>
+</document>
+
+<document index="5">
+<source>LICENSE.txt</source>
+<document_content>
+                                 Apache License
+                           Version 2.0, January 2004
+                        http://www.apache.org/licenses/
+
+   TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
+
+   1. Definitions.
+
+      "License" shall mean the terms and conditions for use, reproduction,
+      and distribution as defined by Sections 1 through 9 of this document.
+
+      "Licensor" shall mean the copyright owner or entity authorized by
+      the copyright owner that is granting the License.
+
+      "Legal Entity" shall mean the union of the acting entity and all
+      other entities that control, are controlled by, or are under common
+      control with that entity. For the purposes of this definition,
+      "control" means (i) the power, direct or indirect, to cause the
+      direction or management of such entity, whether by contract or
+      otherwise, or (ii) ownership of fifty percent (50%) or more of the
+      outstanding shares, or (iii) beneficial ownership of such entity.
+
+      "You" (or "Your") shall mean an individual or Legal Entity
+      exercising permissions granted by this License.
+
+      "Source" form shall mean the preferred form for making modifications,
+      including but not limited to software source code, documentation
+      source, and configuration files.
+
+      "Object" form shall mean any form resulting from mechanical
+      transformation or translation of a Source form, including but
+      not limited to compiled object code, generated documentation,
+      and conversions to other media types.
+
+      "Work" shall mean the work of authorship, whether in Source or
+      Object form, made available under the License, as indicated by a
+      copyright notice that is included in or attached to the work
+      (an example is provided in the Appendix below).
+
+      "Derivative Works" shall mean any work, whether in Source or Object
+      form, that is based on (or derived from) the Work and for which the
+      editorial revisions, annotations, elaborations, or other modifications
+      represent, as a whole, an original work of authorship. For the purposes
+      of this License, Derivative Works shall not include works that remain
+      separable from, or merely link (or bind by name) to the interfaces of,
+      the Work and Derivative Works thereof.
+
+      "Contribution" shall mean any work of authorship, including
+      the original version of the Work and any modifications or additions
+      to that Work or Derivative Works thereof, that is intentionally
+      submitted to Licensor for inclusion in the Work by the copyright owner
+      or by an individual or Legal Entity authorized to submit on behalf of
+      the copyright owner. For the purposes of this definition, "submitted"
+      means any form of electronic, verbal, or written communication sent
+      to the Licensor or its representatives, including but not limited to
+      communication on electronic mailing lists, source code control systems,
+      and issue tracking systems that are managed by, or on behalf of, the
+      Licensor for the purpose of discussing and improving the Work, but
+      excluding communication that is conspicuously marked or otherwise
+      designated in writing by the copyright owner as "Not a Contribution."
+
+      "Contributor" shall mean Licensor and any individual or Legal Entity
+      on behalf of whom a Contribution has been received by Licensor and
+      subsequently incorporated within the Work.
+
+   2. Grant of Copyright License. Subject to the terms and conditions of
+      this License, each Contributor hereby grants to You a perpetual,
+      worldwide, non-exclusive, no-charge, royalty-free, irrevocable
+      copyright license to reproduce, prepare Derivative Works of,
+      publicly display, publicly perform, sublicense, and distribute the
+      Work and such Derivative Works in Source or Object form.
+
+   3. Grant of Patent License. Subject to the terms and conditions of
+      this License, each Contributor hereby grants to You a perpetual,
+      worldwide, non-exclusive, no-charge, royalty-free, irrevocable
+      (except as stated in this section) patent license to make, have made,
+      use, offer to sell, sell, import, and otherwise transfer the Work,
+      where such license applies only to those patent claims licensable
+      by such Contributor that are necessarily infringed by their
+      Contribution(s) alone or by combination of their Contribution(s)
+      with the Work to which such Contribution(s) was submitted. If You
+      institute patent litigation against any entity (including a
+      cross-claim or counterclaim in a lawsuit) alleging that the Work
+      or a Contribution incorporated within the Work constitutes direct
+      or contributory patent infringement, then any patent licenses
+      granted to You under this License for that Work shall terminate
+      as of the date such litigation is filed.
+
+   4. Redistribution. You may reproduce and distribute copies of the
+      Work or Derivative Works thereof in any medium, with or without
+      modifications, and in Source or Object form, provided that You
+      meet the following conditions:
+
+      (a) You must give any other recipients of the Work or
+          Derivative Works a copy of this License; and
+
+      (b) You must cause any modified files to carry prominent notices
+          stating that You changed the files; and
+
+      (c) You must retain, in the Source form of any Derivative Works
+          that You distribute, all copyright, patent, trademark, and
+          attribution notices from the Source form of the Work,
+          excluding those notices that do not pertain to any part of
+          the Derivative Works; and
+
+      (d) If the Work includes a "NOTICE" text file as part of its
+          distribution, then any Derivative Works that You distribute must
+          include a readable copy of the attribution notices contained
+          within such NOTICE file, excluding those notices that do not
+          pertain to any part of the Derivative Works, in at least one
+          of the following places: within a NOTICE text file distributed
+          as part of the Derivative Works; within the Source form or
+          documentation, if provided along with the Derivative Works; or,
+          within a display generated by the Derivative Works, if and
+          wherever such third-party notices normally appear. The contents
+          of the NOTICE file are for informational purposes only and
+          do not modify the License. You may add Your own attribution
+          notices within Derivative Works that You distribute, alongside
+          or as an addendum to the NOTICE text from the Work, provided
+          that such additional attribution notices cannot be construed
+          as modifying the License.
+
+      You may add Your own copyright statement to Your modifications and
+      may provide additional or different license terms and conditions
+      for use, reproduction, or distribution of Your modifications, or
+      for any such Derivative Works as a whole, provided Your use,
+      reproduction, and distribution of the Work otherwise complies with
+      the conditions stated in this License.
+
+   5. Submission of Contributions. Unless You explicitly state otherwise,
+      any Contribution intentionally submitted for inclusion in the Work
+      by You to the Licensor shall be under the terms and conditions of
+      this License, without any additional terms or conditions.
+      Notwithstanding the above, nothing herein shall supersede or modify
+      the terms of any separate license agreement you may have executed
+      with Licensor regarding such Contributions.
+
+   6. Trademarks. This License does not grant permission to use the trade
+      names, trademarks, service marks, or product names of the Licensor,
+      except as required for reasonable and customary use in describing the
+      origin of the Work and reproducing the content of the NOTICE file.
+
+   7. Disclaimer of Warranty. Unless required by applicable law or
+      agreed to in writing, Licensor provides the Work (and each
+      Contributor provides its Contributions) on an "AS IS" BASIS,
+      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+      implied, including, without limitation, any warranties or conditions
+      of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A
+      PARTICULAR PURPOSE. You are solely responsible for determining the
+      appropriateness of using or redistributing the Work and assume any
+      risks associated with Your exercise of permissions under this License.
+
+   8. Limitation of Liability. In no event and under no legal theory,
+      whether in tort (including negligence), contract, or otherwise,
+      unless required by applicable law (such as deliberate and grossly
+      negligent acts) or agreed to in writing, shall any Contributor be
+      liable to You for damages, including any direct, indirect, special,
+      incidental, or consequential damages of any character arising as a
+      result of this License or out of the use or inability to use the
+      Work (including but not limited to damages for loss of goodwill,
+      work stoppage, computer failure or malfunction, or any and all
+      other commercial damages or losses), even if such Contributor
+      has been advised of the possibility of such damages.
+
+   9. Accepting Warranty or Additional Liability. While redistributing
+      the Work or Derivative Works thereof, You may choose to offer,
+      and charge a fee for, acceptance of support, warranty, indemnity,
+      or other liability obligations and/or rights consistent with this
+      License. However, in accepting such obligations, You may act only
+      on Your own behalf and on Your sole responsibility, not on behalf
+      of any other Contributor, and only if You agree to indemnify,
+      defend, and hold each Contributor harmless for any liability
+      incurred by, or claims asserted against, such Contributor by reason
+      of your accepting any such warranty or additional liability.
+
+   END OF TERMS AND CONDITIONS
+
+   APPENDIX: How to apply the Apache License to your work.
+
+      To apply the Apache License to your work, attach the following
+      boilerplate notice, with the fields enclosed by brackets "[]"
+      replaced with your own identifying information. (Don't include
+      the brackets!)  The text should be enclosed in the appropriate
+      comment syntax for the file format. We also recommend that a
+      file or class name and description of purpose be included on the
+      same "printed page" as the copyright notice for easier
+      identification within third-party archives.
+
+   Copyright [yyyy] [name of copyright owner]
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+
+</document_content>
+</document>
+
+<document index="6">
+<source>README.md</source>
+<document_content>
+# _Lorem Chatum_ for Adobe InDesign
+
+**Generate contextually-aware placeholder text in Adobe InDesign using the power of ChatGPT.**
+
+![_Lorem Chatum_ for Adobe InDesign](./documentation/lorem-chatum.gif)
+
+_Lorem Chatum_ is a script for Adobe InDesign that revolutionizes the way you create placeholder text. Instead of traditional static _lorem ipsum_, it leverages OpenAI's ChatGPT (specifically the `gpt-3.5-turbo` model) to generate multilingual, contextually relevant text. This helps you create more realistic and visually cohesive design mockups.
+
+## What it Does
+
+_Lorem Chatum_ offers two primary functionalities:
+
+1.  **Fill Empty Text Frames:** If you select an empty text frame, the script analyzes other text content on the current InDesign page to understand the context. It then prompts ChatGPT to generate new text that fits this context and the selected frame's language.
+2.  **Extend Existing Text:** If you select a text frame that already contains text, _Lorem Chatum_ uses that existing text as a starting point and asks ChatGPT to continue writing, effectively extending your current content in the same style and language.
+
+The amount of text generated is intelligently estimated based on the selected text frame's size and its primary font size.
+
+## Who It's For
+
+This tool is designed for:
+
+*   Graphic Designers
+*   Layout Artists
+*   UI/UX Designers working with print or digital layouts in InDesign
+*   Anyone who frequently uses placeholder text and desires something more dynamic and representative than standard _lorem ipsum_.
+
+## Why It's Useful
+
+*   **Contextual Relevance:** Generates placeholder text that aligns with the existing content on your page, making mockups look more realistic.
+*   **Multilingual Capabilities:** Supports any language that ChatGPT can handle. Simply set the desired language in InDesign's **Character** panel for the selected text frame.
+*   **Improved Design Process:** Helps visualize final layouts more accurately.
+*   **Cost-Effective:** While using the OpenAI API is a paid service, it's generally inexpensive for text generation. For example, processing a volume equivalent to Leo Tolstoy’s "War and Peace" (over 1,200 pages, 780k tokens) with the `gpt-3.5-turbo` model would cost approximately US$3. *(Note: GPT-4 models are significantly more expensive).*
+
+## OpenAI API Key Requirement
+
+To use _Lorem Chatum_, you **must** have your own OpenAI API secret key.
+
+1.  **Create an Account:** If you don't have one, sign up at [OpenAI](https://platform.openai.com/).
+2.  **Generate a Secret Key:** Navigate to the [API keys section](https://platform.openai.com/account/api-keys) in your OpenAI account settings and create a new secret key. It will look something like `sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx`.
+3.  **Billing:** You'll also need to set up billing information in your OpenAI account. New accounts often come with some free credits, but sustained use will incur charges based on the amount of text processed (tokens).
+
+This key will be added to the _Lorem Chatum_ script file during installation.
+
+## Installation
+
+First, download the latest version of the script:
+
+➡️ **[Download _Lorem Chatum_ (main.zip)](https://github.com/twardoch/lorem-chatum-for-indesign/archive/refs/heads/main.zip)**
+
+After downloading, unzip the `lorem-chatum-for-indesign-main.zip` file and navigate into the unzipped `lorem-chatum-for-indesign-main` folder. The installation steps vary depending on your Adobe InDesign version.
+
+### v2 for Adobe InDesign 2023 and Newer (Recommended)
+
+This version uses modern UXP JavaScript and is the actively developed version.
+*   **License:** [Apache 2.0 License](src/v2-indesign-2023-and-newer/LICENSE.txt)
+
+The `src/v2-indesign-2023-and-newer/` folder contains the script `Lorem-Chatum-v2.idjs` and installers.
+
+**Using Installers (Easiest Method):**
+
+1.  Have your OpenAI API secret key ready (copied to your clipboard).
+2.  **On macOS:**
+    *   Navigate to the `src/v2-indesign-2023-and-newer/` folder.
+    *   Double-click the `install-Mac.command` file.
+    *   A terminal window will open and prompt you to paste your OpenAI API key. Paste it and press Enter.
+    *   The script will be automatically installed.
+3.  **On Windows:**
+    *   Navigate to the `src/v2-indesign-2023-and-newer/` folder.
+    *   Double-click the `install-Win.bat` file.
+    *   A command prompt window will open and prompt you to paste your OpenAI API key. Paste it and press Enter.
+    *   The script will be automatically installed.
+
+**Manual Installation (v2):**
+
+1.  Open `src/v2-indesign-2023-and-newer/Lorem-Chatum-v2.idjs` in a plain text editor (like VS Code, Sublime Text, or even Notepad/TextEdit).
+2.  Locate the line:
+    ```javascript
+    const OPENAI_API_KEY = "sk-";
+    ```
+3.  Replace `"sk-"` with your actual OpenAI API secret key, keeping the quotes:
+    ```javascript
+    const OPENAI_API_KEY = "sk-yourActualOpenAIKeyGoesHere";
+    ```
+4.  Save the file.
+5.  Copy the modified `Lorem-Chatum-v2.idjs` file to your InDesign Scripts Panel folder. Common locations:
+    *   **macOS:** `~/Library/Preferences/Adobe InDesign/Version X.X/en_US/Scripts/Scripts Panel/` (replace `Version X.X` and `en_US` with your version and language).
+    *   **Windows:** `%USERPROFILE%\AppData\Roaming\Adobe\InDesign\Version X.X\en_US\Scripts\Scripts Panel\` (replace `Version X.X` and `en_US` with your version and language).
+    *   You can also find this folder by opening InDesign, going to `Window > Utilities > Scripts`, right-clicking on the "User" folder in the Scripts panel, and selecting "Reveal in Finder" (macOS) or "Reveal in Explorer" (Windows).
+
+### v1 for Adobe InDesign 2022 and Older (Legacy)
+
+This version uses the older ExtendScript and is considered legacy.
+*   **License:** [GNU General Public License v3.0](src/v1-indesign-2022-and-older/LICENSE.txt) (due to a dependency).
+
+**Manual Installation (v1):**
+
+1.  Open `src/v1-indesign-2022-and-older/Lorem-Chatum-v1.jsx` in a plain text editor.
+2.  Locate the line:
+    ```javascript
+    const OPENAI_API_KEY = 'sk-';
+    ```
+3.  Replace `'sk-'` with your actual OpenAI API secret key, keeping the quotes:
+    ```javascript
+    const OPENAI_API_KEY = 'sk-yourActualOpenAIKeyGoesHere';
+    ```
+4.  Save the file.
+5.  Copy the modified `Lorem-Chatum-v1.jsx` file to your InDesign Scripts Panel folder (see locations mentioned in the v2 manual installation section).
+
+## Usage
+
+Once installed (and after restarting InDesign if it was running during installation):
+
+1.  Open Adobe InDesign.
+2.  Go to **Window > Utilities > Scripts**. This will open the Scripts panel.
+3.  In the Scripts panel, expand the **User** section. You should see `Lorem-Chatum-v2.idjs` or `Lorem-Chatum-v1.jsx` listed.
+
+**Scenario 1: Filling an Empty Text Frame**
+
+1.  Ensure you have some other text frames on your current page that contain text. This text will provide context.
+2.  Create a new, empty text frame where you want the generated text.
+3.  Select the empty text frame with the **Selection Tool** (the black arrow).
+4.  **Important:** Set the desired language for the generated text. Select the text frame, then go to the **Character** panel (`Window > Type & Tables > Character`) and choose the language from the language dropdown menu.
+5.  In the Scripts panel, double-click the `Lorem-Chatum` script.
+6.  A progress indicator may appear. The script will:
+    *   Gather text from other frames on the current page (up to about 500 words).
+    *   Estimate the required length based on the frame size.
+    *   Send this context to ChatGPT, asking it to generate text in the specified language.
+    *   Place the generated text into your selected empty frame.
+
+**Scenario 2: Extending Existing Text in a Frame**
+
+1.  Select a text frame that already contains some text.
+2.  **Important:** Ensure the language of the existing text (and the desired language for continuation) is set correctly in the **Character** panel.
+3.  In the Scripts panel, double-click the `Lorem-Chatum` script.
+4.  The script will:
+    *   Take the existing text from the selected frame.
+    *   Estimate how much more text is needed to fill the frame.
+    *   Send the existing text to ChatGPT, asking it to continue writing in the same style and language.
+    *   Append the generated text to the existing content in the frame.
+
+You can repeat the process on the same frame. If you want more text in a frame that was filled, simply make the text frame larger and run the script again on that frame.
+
+## Caveats
+
+*   **Believability:** The text generated by _Lorem Chatum_ can be very authentic and believable. If you're mixing it with real content, ensure you have a system to distinguish placeholder text from final copy.
+*   **Fact-Checking:** As with all AI-generated content, do not assume the text is factually accurate or ready for publication without review. It's for placeholder and layout purposes.
+*   **API Costs:** While generally low, monitor your OpenAI API usage and associated costs, especially if using the script extensively.
+
+---
+
+## Technical Details
+
+This section delves into the inner workings of _Lorem Chatum_ and provides guidelines for contributors.
+
+### How the Code Works
+
+While v1 (ExtendScript) and v2 (UXP) are implemented differently due to their respective environments, the core logic for interacting with InDesign and OpenAI is conceptually similar.
+
+**Core Logic (Conceptual):**
+
+1.  **Document & Selection Validation:**
+    *   Checks if a document is open.
+    *   Verifies that a single text frame is selected.
+    *   Displays an alert if these conditions aren't met.
+
+2.  **Context Acquisition:**
+    *   **Empty Text Frame:** If the selected frame `contents` is empty, the script iterates through all other text frames on the `activePage`. It concatenates their contents to form a context string. This context is capped at approximately the first 500 words to stay within reasonable limits for the OpenAI prompt.
+    *   **Non-Empty Text Frame:** If the selected frame already contains text, its `contents` are used directly as the prompt for OpenAI.
+
+3.  **Language Determination:**
+    *   The script reads the language applied to the first character (or the whole text if uniform) of the selected text frame: `textFrame.texts[0].appliedLanguage.name`. This name (e.g., "English: USA", "Polski") is parsed to extract the base language name (e.g., "English", "Polish") which is then sent to ChatGPT.
+
+4.  **Token Estimation for OpenAI API:**
+    *   To tell ChatGPT roughly how much text to generate, the script estimates the capacity of the selected text frame. This is a heuristic based on:
+        *   The frame's geometric bounds (width and height).
+        *   The point size of the text (`textFrame.texts[0].pointSize`).
+        *   An average character width (approximated as `fontSize * 0.6`).
+        *   An average line height (approximated as `fontSize * 1.2`).
+    *   From these, it estimates the number of characters the frame can hold. This character count is then used as a loose proxy for `max_tokens`.
+    *   The final `max_tokens` sent to the API is capped (e.g., at 4095 for `gpt-3.5-turbo`) to prevent errors and excessive costs. *Note: This estimation is approximate and primarily guides the length of the AI's response.*
+
+5.  **OpenAI API Interaction (`gpt-3.5-turbo` model):**
+    *   The script makes a POST request to `https://api.openai.com/v1/chat/completions`.
+    *   **System Prompt:** A directive is sent to guide the AI's behavior:
+        ```
+        "Write an essay in [lang], to the max length, by continuing the prompt. Do not ask anything, do not add anything that is not requested."
+        ```
+        where `[lang]` is the determined language.
+    *   **User Prompt:** The acquired context (from page or frame) is sent as the user's message.
+    *   **Key API Parameters Used:**
+        *   `model`: "gpt-3.5-turbo"
+        *   `messages`: Array containing the system and user prompts.
+        *   `temperature`: `1` (for creative responses).
+        *   `max_tokens`: The estimated number of tokens.
+        *   `top_p`: `1`.
+        *   `n`: `1` (requesting a single completion).
+        *   `frequency_penalty`: `0`.
+        *   `presence_penalty`: `0`.
+
+6.  **Text Insertion:**
+    *   The `content` from ChatGPT's response (`responseData.choices[0].message.content`) is retrieved.
+    *   A leading space is typically added, and any leading newline is removed.
+    *   This generated text is appended to the `contents` of the selected InDesign text frame.
+
+**Version-Specific Implementations:**
+
+*   **v2 (`Lorem-Chatum-v2.idjs` - UXP for InDesign 2023+)**
+    *   **Technology:** Modern ECMAScript 6+ (ES6+) JavaScript, running in Adobe's UXP (Unified Extensibility Platform) environment.
+    *   **API Calls:** Uses the native `fetch` API for HTTPS requests to the OpenAI endpoint.
+        ```javascript
+        let response = await fetch('https://api.openai.com/v1/chat/completions', { /* ...options... */ });
+        ```
+    *   **JSON Handling:** Uses native `JSON.stringify()` to prepare the request body and `await response.json()` to parse the OpenAI API's JSON response.
+    *   **User Interface (UI):**
+        *   Dialogs for alerts and progress messages are created dynamically using UXP's DOM-like APIs (`document.createElement("dialog")`) and Spectrum UXP components (`<sp-body>`, `<sp-button>`, `<sp-text>`).
+            ```javascript
+            const dialog = document.createElement("dialog");
+            dialog.innerHTML = \`...\`; // Spectrum UXP components
+            document.body.appendChild(dialog);
+            dialog.showModal();
+            // dialog.close();
+            ```
+        *   The script detects InDesign's UI brightness (`app.generalPreferences.uiBrightnessPreference`) to set dialog text color (black/white) for better visibility.
+    *   **Measurement Units:** Before performing geometric calculations for token estimation, the script temporarily sets the document's `horizontalMeasurementUnits`, `verticalMeasurementUnits`, `typographicMeasurementUnits`, and `textSizeMeasurementUnits` to `MeasurementUnits.points`. Original settings are restored afterwards.
+    *   **Installers:**
+        *   `install-Mac.command`: A Python 3 script. It interactively prompts for the OpenAI API key. It locates the latest InDesign version's Scripts Panel folder (e.g., `~/Library/Preferences/Adobe InDesign/Version X.X/en_US/Scripts/Scripts Panel/`) by scanning directories and sorting by version number. It then reads the `Lorem-Chatum-v2.idjs` template, replaces the placeholder API key, and writes the new file to the target Scripts Panel folder.
+        *   `install-Win.bat`: A Windows Batch script. It also prompts for the API key. It finds the latest InDesign version folder in `%USERPROFILE%\AppData\Roaming\Adobe\InDesign\`. It copies `Lorem-Chatum-v2.idjs` to the target Scripts Panel folder and then uses a `for` loop with `find /n /v ""` to read the script line by line, replacing the API key placeholder, and writing to a temporary file, which then replaces the original.
+
+*   **v1 (`Lorem-Chatum-v1.jsx` - ExtendScript for InDesign 2022 and older)**
+    *   **Technology:** Legacy ExtendScript (a JavaScript ES3 dialect).
+    *   **API Calls:** Relies on the embedded `restix.jsx` library by Gregor Fellenz. `Restix` acts as a bridge, using VBScript (`MSXML2.ServerXMLHTTP.6.0` or `ADODB.Stream`) on Windows and AppleScript (wrapping `curl`) on macOS to perform the actual HTTPS request to OpenAI.
+    *   **JSON Handling:** Uses the embedded `json.jsx` library by Marc Autret. This provides `JSON.lave()` (similar to `JSON.stringify()`) and `JSON.eval()` (similar to `JSON.parse()`, but using `eval()`) for constructing the request body and parsing the response.
+    *   **User Interface (UI):** Uses standard ExtendScript `alert()` for messages. No progress dialog.
+
+**API Key Management:**
+
+*   In both versions, the OpenAI API key is stored directly as a string constant within the script file (`OPENAI_API_KEY = "sk-..."`).
+*   The installer scripts for v2 automate the process of writing this key into the script. For v1 or manual v2 installation, the user must edit the script file directly.
+*   **Security Note:** Storing API keys directly in client-side scripts is generally not recommended for web applications. However, in the context of a local InDesign script run by the user, it's a pragmatic approach for ease of setup. Users should still protect their API keys.
+
+### Coding and Contributing
+
+We welcome contributions to _Lorem Chatum_, especially for the v2 (UXP) version!
+
+**Project Structure:**
+
+*   `src/v1-indesign-2022-and-older/`: Contains the legacy ExtendScript version (`.jsx`).
+*   `src/v2-indesign-2023-and-newer/`: Contains the modern UXP JavaScript version (`.idjs`) and its installers.
+*   `documentation/`: Contains assets like the demo GIF.
+
+**v2 (Adobe InDesign 2023 and newer - Active Development):**
+
+*   This is the primary version for future development and improvements.
+*   **License:** [Apache 2.0 License](src/v2-indesign-2023-and-newer/LICENSE.txt).
+*   **Contributions:**
+    *   Please submit Pull Requests to the `main` branch.
+    *   Try to follow the existing coding style and patterns.
+    *   Ensure your changes work reliably in recent versions of InDesign (2023+).
+*   **Development Tips:**
+    *   Familiarize yourself with Adobe UXP: [InDesign UXP Documentation](https://developer.adobe.com/indesign/uxp/).
+    *   The UXP Developer Tool can be helpful for debugging.
+    *   Modern JavaScript (ES6+) features can be used.
+
+**v1 (Adobe InDesign 2022 and older - Legacy):**
+
+*   This version is considered "end-of-life" and is not planned for active development. It is provided for users of older InDesign versions.
+*   **License:** [GNU General Public License v3.0](src/v1-indesign-2022-and-older/LICENSE.txt). This is due to its dependency on `Restix.jsx`, which is GPLv3 licensed. The `json.jsx` polyfill is MIT licensed.
+
+**Future Ideas (Contributions Welcome!):**
+
+The original author (Adam Twardoch, with help from ChatGPT-4 for v1) envisioned several potential enhancements:
+
+*   [ ] **UXP Plugin:** Convert the v2 script into a full UXP plugin for better integration and potential panel UI.
+*   [ ] **Improved UI:** Develop a more interactive UXP dialog/panel for settings (e.g., selecting different OpenAI models, adjusting temperature, choosing prompt styles).
+*   [ ] **Secure API Key Storage:** If developed as a UXP plugin, explore UXP's [SecureStorage](https://developer.adobe.com/xd/uxp/uxp/reference-js/Modules/uxp/Key-Value%20Storage/SecureStorage/) for storing the OpenAI API key more securely than plain text in the script.
+*   [ ] **More Prompting Types:** Allow users to select different styles of text generation (e.g., "more formal," "more creative," "bullet points").
+*   [ ] **Improved Token Estimation:** Refine the logic for estimating the number of tokens to better match the frame's capacity.
+*   [ ] **Translation Functionality:** Add a feature where if two frames are selected (one with source text, one empty target frame), the script translates the text.
+*   [ ] **Summarization/Shortening:** Add functionality to shorten or summarize text within a frame to resolve overflows.
+
+### Author and Acknowledgements
+
+*   **Author:** Adam Twardoch
+*   The initial version (v1, ExtendScript) was written with significant assistance from ChatGPT-4.
+*   **v1 Dependencies:**
+    *   JSON processing: [standalone JSON](https://github.com/indiscripts/extendscript/tree/master/JSON) code by Marc Autret (MIT License).
+    *   HTTPS API calls: [Restix](https://github.com/grefel/restix/blob/master/restix.jsx) code by Gregor Fellenz (GNU GPL v3.0).
+---
+
+*The original README included some taglines and scenarios written by ChatGPT. These have been omitted in this version for brevity but can be found in the project's commit history if desired.*
+*The section "A few words about writing code together with ChatGPT" from the original README has also been omitted here but can be found in the commit history.*
+
+</document_content>
+</document>
+
+<document index="7">
+<source>package.json</source>
+<document_content>
+{
+  "name": "lorem-chatum-for-indesign",
+  "version": "2.0.0",
+  "description": "Generate contextually-aware placeholder text in Adobe InDesign using the power of ChatGPT",
+  "main": "src/v2-indesign-2023-and-newer/Lorem-Chatum-v2.idjs",
+... (file content truncated to first 5 lines)
+</document_content>
+</document>
+
+# File: /Users/adam/Developer/vcs/github.twardoch/pub/lorem-chatum-for-indesign/scripts/build-artifacts.js
+# Language: javascript
+
+async function generateArtifactMetadata(())
+
+async function createReleaseManifest(())
+
+async function createBinaryInfo(())
+
+async function generateInstallationScripts(())
+
+async function buildArtifacts(())
+
+
+# File: /Users/adam/Developer/vcs/github.twardoch/pub/lorem-chatum-for-indesign/scripts/build-multiplatform.js
+# Language: javascript
+
+async function createPlatformPackages(())
+
+async function createPlatformPackage((platform, version))
+
+async function createPlatformReadme((platform, packageDir, version))
+
+async function createZipArchive((sourceDir, zipPath))
+
+async function createChecksums(())
+
+async function buildMultiplatform(())
+
+
+# File: /Users/adam/Developer/vcs/github.twardoch/pub/lorem-chatum-for-indesign/scripts/build.js
+# Language: javascript
+
+async function clean(())
+
+async function copySource(())
+
+async function createZip(())
+
+async function createInstallers(())
+
+async function build(())
+
+
+# File: /Users/adam/Developer/vcs/github.twardoch/pub/lorem-chatum-for-indesign/scripts/dev.js
+# Language: javascript
+
+async function dev(())
+
+
+# File: /Users/adam/Developer/vcs/github.twardoch/pub/lorem-chatum-for-indesign/scripts/prepare.js
+# Language: javascript
+
+async function prepare(())
+
+
+# File: /Users/adam/Developer/vcs/github.twardoch/pub/lorem-chatum-for-indesign/scripts/release.js
+# Language: javascript
+
+function checkCleanWorkingDirectory(())
+
+function validateBranch(())
+
+function createGitTag((version))
+
+function updatePackageVersion((version))
+
+async function release(())
+
+
+# File: /Users/adam/Developer/vcs/github.twardoch/pub/lorem-chatum-for-indesign/scripts/version.js
+# Language: javascript
+
+function getVersion(())
+
+function updateVersionInFiles((version))
+
+
+<document index="8">
+<source>src/v1-indesign-2022-and-older/LICENSE.txt</source>
+<document_content>
+                    GNU GENERAL PUBLIC LICENSE
+                       Version 3, 29 June 2007
+
+ Copyright (C) 2007 Free Software Foundation, Inc. <http://fsf.org/>
+ Everyone is permitted to copy and distribute verbatim copies
+ of this license document, but changing it is not allowed.
+
+                            Preamble
+
+  The GNU General Public License is a free, copyleft license for
+software and other kinds of works.
+
+  The licenses for most software and other practical works are designed
+to take away your freedom to share and change the works.  By contrast,
+the GNU General Public License is intended to guarantee your freedom to
+share and change all versions of a program--to make sure it remains free
+software for all its users.  We, the Free Software Foundation, use the
+GNU General Public License for most of our software; it applies also to
+any other work released this way by its authors.  You can apply it to
+your programs, too.
+
+  When we speak of free software, we are referring to freedom, not
+price.  Our General Public Licenses are designed to make sure that you
+have the freedom to distribute copies of free software (and charge for
+them if you wish), that you receive source code or can get it if you
+want it, that you can change the software or use pieces of it in new
+free programs, and that you know you can do these things.
+
+  To protect your rights, we need to prevent others from denying you
+these rights or asking you to surrender the rights.  Therefore, you have
+certain responsibilities if you distribute copies of the software, or if
+you modify it: responsibilities to respect the freedom of others.
+
+  For example, if you distribute copies of such a program, whether
+gratis or for a fee, you must pass on to the recipients the same
+freedoms that you received.  You must make sure that they, too, receive
+or can get the source code.  And you must show them these terms so they
+know their rights.
+
+  Developers that use the GNU GPL protect your rights with two steps:
+(1) assert copyright on the software, and (2) offer you this License
+giving you legal permission to copy, distribute and/or modify it.
+
+  For the developers' and authors' protection, the GPL clearly explains
+that there is no warranty for this free software.  For both users' and
+authors' sake, the GPL requires that modified versions be marked as
+changed, so that their problems will not be attributed erroneously to
+authors of previous versions.
+
+  Some devices are designed to deny users access to install or run
+modified versions of the software inside them, although the manufacturer
+can do so.  This is fundamentally incompatible with the aim of
+protecting users' freedom to change the software.  The systematic
+pattern of such abuse occurs in the area of products for individuals to
+use, which is precisely where it is most unacceptable.  Therefore, we
+have designed this version of the GPL to prohibit the practice for those
+products.  If such problems arise substantially in other domains, we
+stand ready to extend this provision to those domains in future versions
+of the GPL, as needed to protect the freedom of users.
+
+  Finally, every program is threatened constantly by software patents.
+States should not allow patents to restrict development and use of
+software on general-purpose computers, but in those that do, we wish to
+avoid the special danger that patents applied to a free program could
+make it effectively proprietary.  To prevent this, the GPL assures that
+patents cannot be used to render the program non-free.
+
+  The precise terms and conditions for copying, distribution and
+modification follow.
+
+                       TERMS AND CONDITIONS
+
+  0. Definitions.
+
+  "This License" refers to version 3 of the GNU General Public License.
+
+  "Copyright" also means copyright-like laws that apply to other kinds of
+works, such as semiconductor masks.
+
+  "The Program" refers to any copyrightable work licensed under this
+License.  Each licensee is addressed as "you".  "Licensees" and
+"recipients" may be individuals or organizations.
+
+  To "modify" a work means to copy from or adapt all or part of the work
+in a fashion requiring copyright permission, other than the making of an
+exact copy.  The resulting work is called a "modified version" of the
+earlier work or a work "based on" the earlier work.
+
+  A "covered work" means either the unmodified Program or a work based
+on the Program.
+
+  To "propagate" a work means to do anything with it that, without
+permission, would make you directly or secondarily liable for
+infringement under applicable copyright law, except executing it on a
+computer or modifying a private copy.  Propagation includes copying,
+distribution (with or without modification), making available to the
+public, and in some countries other activities as well.
+
+  To "convey" a work means any kind of propagation that enables other
+parties to make or receive copies.  Mere interaction with a user through
+a computer network, with no transfer of a copy, is not conveying.
+
+  An interactive user interface displays "Appropriate Legal Notices"
+to the extent that it includes a convenient and prominently visible
+feature that (1) displays an appropriate copyright notice, and (2)
+tells the user that there is no warranty for the work (except to the
+extent that warranties are provided), that licensees may convey the
+work under this License, and how to view a copy of this License.  If
+the interface presents a list of user commands or options, such as a
+menu, a prominent item in the list meets this criterion.
+
+  1. Source Code.
+
+  The "source code" for a work means the preferred form of the work
+for making modifications to it.  "Object code" means any non-source
+form of a work.
+
+  A "Standard Interface" means an interface that either is an official
+standard defined by a recognized standards body, or, in the case of
+interfaces specified for a particular programming language, one that
+is widely used among developers working in that language.
+
+  The "System Libraries" of an executable work include anything, other
+than the work as a whole, that (a) is included in the normal form of
+packaging a Major Component, but which is not part of that Major
+Component, and (b) serves only to enable use of the work with that
+Major Component, or to implement a Standard Interface for which an
+implementation is available to the public in source code form.  A
+"Major Component", in this context, means a major essential component
+(kernel, window system, and so on) of the specific operating system
+(if any) on which the executable work runs, or a compiler used to
+produce the work, or an object code interpreter used to run it.
+
+  The "Corresponding Source" for a work in object code form means all
+the source code needed to generate, install, and (for an executable
+work) run the object code and to modify the work, including scripts to
+control those activities.  However, it does not include the work's
+System Libraries, or general-purpose tools or generally available free
+programs which are used unmodified in performing those activities but
+which are not part of the work.  For example, Corresponding Source
+includes interface definition files associated with source files for
+the work, and the source code for shared libraries and dynamically
+linked subprograms that the work is specifically designed to require,
+such as by intimate data communication or control flow between those
+subprograms and other parts of the work.
+
+  The Corresponding Source need not include anything that users
+can regenerate automatically from other parts of the Corresponding
+Source.
+
+  The Corresponding Source for a work in source code form is that
+same work.
+
+  2. Basic Permissions.
+
+  All rights granted under this License are granted for the term of
+copyright on the Program, and are irrevocable provided the stated
+conditions are met.  This License explicitly affirms your unlimited
+permission to run the unmodified Program.  The output from running a
+covered work is covered by this License only if the output, given its
+content, constitutes a covered work.  This License acknowledges your
+rights of fair use or other equivalent, as provided by copyright law.
+
+  You may make, run and propagate covered works that you do not
+convey, without conditions so long as your license otherwise remains
+in force.  You may convey covered works to others for the sole purpose
+of having them make modifications exclusively for you, or provide you
+with facilities for running those works, provided that you comply with
+the terms of this License in conveying all material for which you do
+not control copyright.  Those thus making or running the covered works
+for you must do so exclusively on your behalf, under your direction
+and control, on terms that prohibit them from making any copies of
+your copyrighted material outside their relationship with you.
+
+  Conveying under any other circumstances is permitted solely under
+the conditions stated below.  Sublicensing is not allowed; section 10
+makes it unnecessary.
+
+  3. Protecting Users' Legal Rights From Anti-Circumvention Law.
+
+  No covered work shall be deemed part of an effective technological
+measure under any applicable law fulfilling obligations under article
+11 of the WIPO copyright treaty adopted on 20 December 1996, or
+similar laws prohibiting or restricting circumvention of such
+measures.
+
+  When you convey a covered work, you waive any legal power to forbid
+circumvention of technological measures to the extent such circumvention
+is effected by exercising rights under this License with respect to
+the covered work, and you disclaim any intention to limit operation or
+modification of the work as a means of enforcing, against the work's
+users, your or third parties' legal rights to forbid circumvention of
+technological measures.
+
+  4. Conveying Verbatim Copies.
+
+  You may convey verbatim copies of the Program's source code as you
+receive it, in any medium, provided that you conspicuously and
+appropriately publish on each copy an appropriate copyright notice;
+keep intact all notices stating that this License and any
+non-permissive terms added in accord with section 7 apply to the code;
+keep intact all notices of the absence of any warranty; and give all
+recipients a copy of this License along with the Program.
+
+  You may charge any price or no price for each copy that you convey,
+and you may offer support or warranty protection for a fee.
+
+  5. Conveying Modified Source Versions.
+
+  You may convey a work based on the Program, or the modifications to
+produce it from the Program, in the form of source code under the
+terms of section 4, provided that you also meet all of these conditions:
+
+    a) The work must carry prominent notices stating that you modified
+    it, and giving a relevant date.
+
+    b) The work must carry prominent notices stating that it is
+    released under this License and any conditions added under section
+    7.  This requirement modifies the requirement in section 4 to
+    "keep intact all notices".
+
+    c) You must license the entire work, as a whole, under this
+    License to anyone who comes into possession of a copy.  This
+    License will therefore apply, along with any applicable section 7
+    additional terms, to the whole of the work, and all its parts,
+    regardless of how they are packaged.  This License gives no
+    permission to license the work in any other way, but it does not
+    invalidate such permission if you have separately received it.
+
+    d) If the work has interactive user interfaces, each must display
+    Appropriate Legal Notices; however, if the Program has interactive
+    interfaces that do not display Appropriate Legal Notices, your
+    work need not make them do so.
+
+  A compilation of a covered work with other separate and independent
+works, which are not by their nature extensions of the covered work,
+and which are not combined with it such as to form a larger program,
+in or on a volume of a storage or distribution medium, is called an
+"aggregate" if the compilation and its resulting copyright are not
+used to limit the access or legal rights of the compilation's users
+beyond what the individual works permit.  Inclusion of a covered work
+in an aggregate does not cause this License to apply to the other
+parts of the aggregate.
+
+  6. Conveying Non-Source Forms.
+
+  You may convey a covered work in object code form under the terms
+of sections 4 and 5, provided that you also convey the
+machine-readable Corresponding Source under the terms of this License,
+in one of these ways:
+
+    a) Convey the object code in, or embodied in, a physical product
+    (including a physical distribution medium), accompanied by the
+    Corresponding Source fixed on a durable physical medium
+    customarily used for software interchange.
+
+    b) Convey the object code in, or embodied in, a physical product
+    (including a physical distribution medium), accompanied by a
+    written offer, valid for at least three years and valid for as
+    long as you offer spare parts or customer support for that product
+    model, to give anyone who possesses the object code either (1) a
+    copy of the Corresponding Source for all the software in the
+    product that is covered by this License, on a durable physical
+    medium customarily used for software interchange, for a price no
+    more than your reasonable cost of physically performing this
+    conveying of source, or (2) access to copy the
+    Corresponding Source from a network server at no charge.
+
+    c) Convey individual copies of the object code with a copy of the
+    written offer to provide the Corresponding Source.  This
+    alternative is allowed only occasionally and noncommercially, and
+    only if you received the object code with such an offer, in accord
+    with subsection 6b.
+
+    d) Convey the object code by offering access from a designated
+    place (gratis or for a charge), and offer equivalent access to the
+    Corresponding Source in the same way through the same place at no
+    further charge.  You need not require recipients to copy the
+    Corresponding Source along with the object code.  If the place to
+    copy the object code is a network server, the Corresponding Source
+    may be on a different server (operated by you or a third party)
+    that supports equivalent copying facilities, provided you maintain
+    clear directions next to the object code saying where to find the
+    Corresponding Source.  Regardless of what server hosts the
+    Corresponding Source, you remain obligated to ensure that it is
+    available for as long as needed to satisfy these requirements.
+
+    e) Convey the object code using peer-to-peer transmission, provided
+    you inform other peers where the object code and Corresponding
+    Source of the work are being offered to the general public at no
+    charge under subsection 6d.
+
+  A separable portion of the object code, whose source code is excluded
+from the Corresponding Source as a System Library, need not be
+included in conveying the object code work.
+
+  A "User Product" is either (1) a "consumer product", which means any
+tangible personal property which is normally used for personal, family,
+or household purposes, or (2) anything designed or sold for incorporation
+into a dwelling.  In determining whether a product is a consumer product,
+doubtful cases shall be resolved in favor of coverage.  For a particular
+product received by a particular user, "normally used" refers to a
+typical or common use of that class of product, regardless of the status
+of the particular user or of the way in which the particular user
+actually uses, or expects or is expected to use, the product.  A product
+is a consumer product regardless of whether the product has substantial
+commercial, industrial or non-consumer uses, unless such uses represent
+the only significant mode of use of the product.
+
+  "Installation Information" for a User Product means any methods,
+procedures, authorization keys, or other information required to install
+and execute modified versions of a covered work in that User Product from
+a modified version of its Corresponding Source.  The information must
+suffice to ensure that the continued functioning of the modified object
+code is in no case prevented or interfered with solely because
+modification has been made.
+
+  If you convey an object code work under this section in, or with, or
+specifically for use in, a User Product, and the conveying occurs as
+part of a transaction in which the right of possession and use of the
+User Product is transferred to the recipient in perpetuity or for a
+fixed term (regardless of how the transaction is characterized), the
+Corresponding Source conveyed under this section must be accompanied
+by the Installation Information.  But this requirement does not apply
+if neither you nor any third party retains the ability to install
+modified object code on the User Product (for example, the work has
+been installed in ROM).
+
+  The requirement to provide Installation Information does not include a
+requirement to continue to provide support service, warranty, or updates
+for a work that has been modified or installed by the recipient, or for
+the User Product in which it has been modified or installed.  Access to a
+network may be denied when the modification itself materially and
+adversely affects the operation of the network or violates the rules and
+protocols for communication across the network.
+
+  Corresponding Source conveyed, and Installation Information provided,
+in accord with this section must be in a format that is publicly
+documented (and with an implementation available to the public in
+source code form), and must require no special password or key for
+unpacking, reading or copying.
+
+  7. Additional Terms.
+
+  "Additional permissions" are terms that supplement the terms of this
+License by making exceptions from one or more of its conditions.
+Additional permissions that are applicable to the entire Program shall
+be treated as though they were included in this License, to the extent
+that they are valid under applicable law.  If additional permissions
+apply only to part of the Program, that part may be used separately
+under those permissions, but the entire Program remains governed by
+this License without regard to the additional permissions.
+
+  When you convey a copy of a covered work, you may at your option
+remove any additional permissions from that copy, or from any part of
+it.  (Additional permissions may be written to require their own
+removal in certain cases when you modify the work.)  You may place
+additional permissions on material, added by you to a covered work,
+for which you have or can give appropriate copyright permission.
+
+  Notwithstanding any other provision of this License, for material you
+add to a covered work, you may (if authorized by the copyright holders of
+that material) supplement the terms of this License with terms:
+
+    a) Disclaiming warranty or limiting liability differently from the
+    terms of sections 15 and 16 of this License; or
+
+    b) Requiring preservation of specified reasonable legal notices or
+    author attributions in that material or in the Appropriate Legal
+    Notices displayed by works containing it; or
+
+    c) Prohibiting misrepresentation of the origin of that material, or
+    requiring that modified versions of such material be marked in
+    reasonable ways as different from the original version; or
+
+    d) Limiting the use for publicity purposes of names of licensors or
+    authors of the material; or
+
+    e) Declining to grant rights under trademark law for use of some
+    trade names, trademarks, or service marks; or
+
+    f) Requiring indemnification of licensors and authors of that
+    material by anyone who conveys the material (or modified versions of
+    it) with contractual assumptions of liability to the recipient, for
+    any liability that these contractual assumptions directly impose on
+    those licensors and authors.
+
+  All other non-permissive additional terms are considered "further
+restrictions" within the meaning of section 10.  If the Program as you
+received it, or any part of it, contains a notice stating that it is
+governed by this License along with a term that is a further
+restriction, you may remove that term.  If a license document contains
+a further restriction but permits relicensing or conveying under this
+License, you may add to a covered work material governed by the terms
+of that license document, provided that the further restriction does
+not survive such relicensing or conveying.
+
+  If you add terms to a covered work in accord with this section, you
+must place, in the relevant source files, a statement of the
+additional terms that apply to those files, or a notice indicating
+where to find the applicable terms.
+
+  Additional terms, permissive or non-permissive, may be stated in the
+form of a separately written license, or stated as exceptions;
+the above requirements apply either way.
+
+  8. Termination.
+
+  You may not propagate or modify a covered work except as expressly
+provided under this License.  Any attempt otherwise to propagate or
+modify it is void, and will automatically terminate your rights under
+this License (including any patent licenses granted under the third
+paragraph of section 11).
+
+  However, if you cease all violation of this License, then your
+license from a particular copyright holder is reinstated (a)
+provisionally, unless and until the copyright holder explicitly and
+finally terminates your license, and (b) permanently, if the copyright
+holder fails to notify you of the violation by some reasonable means
+prior to 60 days after the cessation.
+
+  Moreover, your license from a particular copyright holder is
+reinstated permanently if the copyright holder notifies you of the
+violation by some reasonable means, this is the first time you have
+received notice of violation of this License (for any work) from that
+copyright holder, and you cure the violation prior to 30 days after
+your receipt of the notice.
+
+  Termination of your rights under this section does not terminate the
+licenses of parties who have received copies or rights from you under
+this License.  If your rights have been terminated and not permanently
+reinstated, you do not qualify to receive new licenses for the same
+material under section 10.
+
+  9. Acceptance Not Required for Having Copies.
+
+  You are not required to accept this License in order to receive or
+run a copy of the Program.  Ancillary propagation of a covered work
+occurring solely as a consequence of using peer-to-peer transmission
+to receive a copy likewise does not require acceptance.  However,
+nothing other than this License grants you permission to propagate or
+modify any covered work.  These actions infringe copyright if you do
+not accept this License.  Therefore, by modifying or propagating a
+covered work, you indicate your acceptance of this License to do so.
+
+  10. Automatic Licensing of Downstream Recipients.
+
+  Each time you convey a covered work, the recipient automatically
+receives a license from the original licensors, to run, modify and
+propagate that work, subject to this License.  You are not responsible
+for enforcing compliance by third parties with this License.
+
+  An "entity transaction" is a transaction transferring control of an
+organization, or substantially all assets of one, or subdividing an
+organization, or merging organizations.  If propagation of a covered
+work results from an entity transaction, each party to that
+transaction who receives a copy of the work also receives whatever
+licenses to the work the party's predecessor in interest had or could
+give under the previous paragraph, plus a right to possession of the
+Corresponding Source of the work from the predecessor in interest, if
+the predecessor has it or can get it with reasonable efforts.
+
+  You may not impose any further restrictions on the exercise of the
+rights granted or affirmed under this License.  For example, you may
+not impose a license fee, royalty, or other charge for exercise of
+rights granted under this License, and you may not initiate litigation
+(including a cross-claim or counterclaim in a lawsuit) alleging that
+any patent claim is infringed by making, using, selling, offering for
+sale, or importing the Program or any portion of it.
+
+  11. Patents.
+
+  A "contributor" is a copyright holder who authorizes use under this
+License of the Program or a work on which the Program is based.  The
+work thus licensed is called the contributor's "contributor version".
+
+  A contributor's "essential patent claims" are all patent claims
+owned or controlled by the contributor, whether already acquired or
+hereafter acquired, that would be infringed by some manner, permitted
+by this License, of making, using, or selling its contributor version,
+but do not include claims that would be infringed only as a
+consequence of further modification of the contributor version.  For
+purposes of this definition, "control" includes the right to grant
+patent sublicenses in a manner consistent with the requirements of
+this License.
+
+  Each contributor grants you a non-exclusive, worldwide, royalty-free
+patent license under the contributor's essential patent claims, to
+make, use, sell, offer for sale, import and otherwise run, modify and
+propagate the contents of its contributor version.
+
+  In the following three paragraphs, a "patent license" is any express
+agreement or commitment, however denominated, not to enforce a patent
+(such as an express permission to practice a patent or covenant not to
+sue for patent infringement).  To "grant" such a patent license to a
+party means to make such an agreement or commitment not to enforce a
+patent against the party.
+
+  If you convey a covered work, knowingly relying on a patent license,
+and the Corresponding Source of the work is not available for anyone
+to copy, free of charge and under the terms of this License, through a
+publicly available network server or other readily accessible means,
+then you must either (1) cause the Corresponding Source to be so
+available, or (2) arrange to deprive yourself of the benefit of the
+patent license for this particular work, or (3) arrange, in a manner
+consistent with the requirements of this License, to extend the patent
+license to downstream recipients.  "Knowingly relying" means you have
+actual knowledge that, but for the patent license, your conveying the
+covered work in a country, or your recipient's use of the covered work
+in a country, would infringe one or more identifiable patents in that
+country that you have reason to believe are valid.
+
+  If, pursuant to or in connection with a single transaction or
+arrangement, you convey, or propagate by procuring conveyance of, a
+covered work, and grant a patent license to some of the parties
+receiving the covered work authorizing them to use, propagate, modify
+or convey a specific copy of the covered work, then the patent license
+you grant is automatically extended to all recipients of the covered
+work and works based on it.
+
+  A patent license is "discriminatory" if it does not include within
+the scope of its coverage, prohibits the exercise of, or is
+conditioned on the non-exercise of one or more of the rights that are
+specifically granted under this License.  You may not convey a covered
+work if you are a party to an arrangement with a third party that is
+in the business of distributing software, under which you make payment
+to the third party based on the extent of your activity of conveying
+the work, and under which the third party grants, to any of the
+parties who would receive the covered work from you, a discriminatory
+patent license (a) in connection with copies of the covered work
+conveyed by you (or copies made from those copies), or (b) primarily
+for and in connection with specific products or compilations that
+contain the covered work, unless you entered into that arrangement,
+or that patent license was granted, prior to 28 March 2007.
+
+  Nothing in this License shall be construed as excluding or limiting
+any implied license or other defenses to infringement that may
+otherwise be available to you under applicable patent law.
+
+  12. No Surrender of Others' Freedom.
+
+  If conditions are imposed on you (whether by court order, agreement or
+otherwise) that contradict the conditions of this License, they do not
+excuse you from the conditions of this License.  If you cannot convey a
+covered work so as to satisfy simultaneously your obligations under this
+License and any other pertinent obligations, then as a consequence you may
+not convey it at all.  For example, if you agree to terms that obligate you
+to collect a royalty for further conveying from those to whom you convey
+the Program, the only way you could satisfy both those terms and this
+License would be to refrain entirely from conveying the Program.
+
+  13. Use with the GNU Affero General Public License.
+
+  Notwithstanding any other provision of this License, you have
+permission to link or combine any covered work with a work licensed
+under version 3 of the GNU Affero General Public License into a single
+combined work, and to convey the resulting work.  The terms of this
+License will continue to apply to the part which is the covered work,
+but the special requirements of the GNU Affero General Public License,
+section 13, concerning interaction through a network will apply to the
+combination as such.
+
+  14. Revised Versions of this License.
+
+  The Free Software Foundation may publish revised and/or new versions of
+the GNU General Public License from time to time.  Such new versions will
+be similar in spirit to the present version, but may differ in detail to
+address new problems or concerns.
+
+  Each version is given a distinguishing version number.  If the
+Program specifies that a certain numbered version of the GNU General
+Public License "or any later version" applies to it, you have the
+option of following the terms and conditions either of that numbered
+version or of any later version published by the Free Software
+Foundation.  If the Program does not specify a version number of the
+GNU General Public License, you may choose any version ever published
+by the Free Software Foundation.
+
+  If the Program specifies that a proxy can decide which future
+versions of the GNU General Public License can be used, that proxy's
+public statement of acceptance of a version permanently authorizes you
+to choose that version for the Program.
+
+  Later license versions may give you additional or different
+permissions.  However, no additional obligations are imposed on any
+author or copyright holder as a result of your choosing to follow a
+later version.
+
+  15. Disclaimer of Warranty.
+
+  THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY
+APPLICABLE LAW.  EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT
+HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM "AS IS" WITHOUT WARRANTY
+OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO,
+THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+PURPOSE.  THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM
+IS WITH YOU.  SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF
+ALL NECESSARY SERVICING, REPAIR OR CORRECTION.
+
+  16. Limitation of Liability.
+
+  IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING
+WILL ANY COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MODIFIES AND/OR CONVEYS
+THE PROGRAM AS PERMITTED ABOVE, BE LIABLE TO YOU FOR DAMAGES, INCLUDING ANY
+GENERAL, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE
+USE OR INABILITY TO USE THE PROGRAM (INCLUDING BUT NOT LIMITED TO LOSS OF
+DATA OR DATA BEING RENDERED INACCURATE OR LOSSES SUSTAINED BY YOU OR THIRD
+PARTIES OR A FAILURE OF THE PROGRAM TO OPERATE WITH ANY OTHER PROGRAMS),
+EVEN IF SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF
+SUCH DAMAGES.
+
+  17. Interpretation of Sections 15 and 16.
+
+  If the disclaimer of warranty and limitation of liability provided
+above cannot be given local legal effect according to their terms,
+reviewing courts shall apply local law that most closely approximates
+an absolute waiver of all civil liability in connection with the
+Program, unless a warranty or assumption of liability accompanies a
+copy of the Program in return for a fee.
+
+                     END OF TERMS AND CONDITIONS
+
+            How to Apply These Terms to Your New Programs
+
+  If you develop a new program, and you want it to be of the greatest
+possible use to the public, the best way to achieve this is to make it
+free software which everyone can redistribute and change under these terms.
+
+  To do so, attach the following notices to the program.  It is safest
+to attach them to the start of each source file to most effectively
+state the exclusion of warranty; and each file should have at least
+the "copyright" line and a pointer to where the full notice is found.
+
+    <one line to give the program's name and a brief idea of what it does.>
+    Copyright (C) <year>  <name of author>
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+Also add information on how to contact you by electronic and paper mail.
+
+  If the program does terminal interaction, make it output a short
+notice like this when it starts in an interactive mode:
+
+    <program>  Copyright (C) <year>  <name of author>
+    This program comes with ABSOLUTELY NO WARRANTY; for details type `show w'.
+    This is free software, and you are welcome to redistribute it
+    under certain conditions; type `show c' for details.
+
+The hypothetical commands `show w' and `show c' should show the appropriate
+parts of the General Public License.  Of course, your program's commands
+might be different; for a GUI interface, you would use an "about box".
+
+  You should also get your employer (if you work as a programmer) or school,
+if any, to sign a "copyright disclaimer" for the program, if necessary.
+For more information on this, and how to apply and follow the GNU GPL, see
+<http://www.gnu.org/licenses/>.
+
+  The GNU General Public License does not permit incorporating your program
+into proprietary programs.  If your program is a subroutine library, you
+may consider it more useful to permit linking proprietary applications with
+the library.  If this is what you want to do, use the GNU Lesser General
+Public License instead of this License.  But first, please read
+<http://www.gnu.org/philosophy/why-not-lgpl.html>.
+
+</document_content>
+</document>
+
+# File: /Users/adam/Developer/vcs/github.twardoch/pub/lorem-chatum-for-indesign/src/v1-indesign-2022-and-older/Lorem-Chatum-v1.jsx
+# Language: javascript
+
+function openAIApi((apiKey, prompt, lang, maxTokens))
+
+function getContext((textFrame))
+
+function collectPageText((textFrame))
+
+function getTextFromPage((page))
+
+function wordCount((text))
+
+function capTextAtWords((text, wordLimit))
+
+function estimateTokens((textFrame))
+
+function getOpenAICompletion((context, lang, estimatedTokens))
+
+function completeSelectedFrameText(())
+
+
+<document index="9">
+<source>src/v2-indesign-2023-and-newer/LICENSE.txt</source>
+<document_content>
+                                 Apache License
+                           Version 2.0, January 2004
+                        http://www.apache.org/licenses/
+
+   TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
+
+   1. Definitions.
+
+      "License" shall mean the terms and conditions for use, reproduction,
+      and distribution as defined by Sections 1 through 9 of this document.
+
+      "Licensor" shall mean the copyright owner or entity authorized by
+      the copyright owner that is granting the License.
+
+      "Legal Entity" shall mean the union of the acting entity and all
+      other entities that control, are controlled by, or are under common
+      control with that entity. For the purposes of this definition,
+      "control" means (i) the power, direct or indirect, to cause the
+      direction or management of such entity, whether by contract or
+      otherwise, or (ii) ownership of fifty percent (50%) or more of the
+      outstanding shares, or (iii) beneficial ownership of such entity.
+
+      "You" (or "Your") shall mean an individual or Legal Entity
+      exercising permissions granted by this License.
+
+      "Source" form shall mean the preferred form for making modifications,
+      including but not limited to software source code, documentation
+      source, and configuration files.
+
+      "Object" form shall mean any form resulting from mechanical
+      transformation or translation of a Source form, including but
+      not limited to compiled object code, generated documentation,
+      and conversions to other media types.
+
+      "Work" shall mean the work of authorship, whether in Source or
+      Object form, made available under the License, as indicated by a
+      copyright notice that is included in or attached to the work
+      (an example is provided in the Appendix below).
+
+      "Derivative Works" shall mean any work, whether in Source or Object
+      form, that is based on (or derived from) the Work and for which the
+      editorial revisions, annotations, elaborations, or other modifications
+      represent, as a whole, an original work of authorship. For the purposes
+      of this License, Derivative Works shall not include works that remain
+      separable from, or merely link (or bind by name) to the interfaces of,
+      the Work and Derivative Works thereof.
+
+      "Contribution" shall mean any work of authorship, including
+      the original version of the Work and any modifications or additions
+      to that Work or Derivative Works thereof, that is intentionally
+      submitted to Licensor for inclusion in the Work by the copyright owner
+      or by an individual or Legal Entity authorized to submit on behalf of
+      the copyright owner. For the purposes of this definition, "submitted"
+      means any form of electronic, verbal, or written communication sent
+      to the Licensor or its representatives, including but not limited to
+      communication on electronic mailing lists, source code control systems,
+      and issue tracking systems that are managed by, or on behalf of, the
+      Licensor for the purpose of discussing and improving the Work, but
+      excluding communication that is conspicuously marked or otherwise
+      designated in writing by the copyright owner as "Not a Contribution."
+
+      "Contributor" shall mean Licensor and any individual or Legal Entity
+      on behalf of whom a Contribution has been received by Licensor and
+      subsequently incorporated within the Work.
+
+   2. Grant of Copyright License. Subject to the terms and conditions of
+      this License, each Contributor hereby grants to You a perpetual,
+      worldwide, non-exclusive, no-charge, royalty-free, irrevocable
+      copyright license to reproduce, prepare Derivative Works of,
+      publicly display, publicly perform, sublicense, and distribute the
+      Work and such Derivative Works in Source or Object form.
+
+   3. Grant of Patent License. Subject to the terms and conditions of
+      this License, each Contributor hereby grants to You a perpetual,
+      worldwide, non-exclusive, no-charge, royalty-free, irrevocable
+      (except as stated in this section) patent license to make, have made,
+      use, offer to sell, sell, import, and otherwise transfer the Work,
+      where such license applies only to those patent claims licensable
+      by such Contributor that are necessarily infringed by their
+      Contribution(s) alone or by combination of their Contribution(s)
+      with the Work to which such Contribution(s) was submitted. If You
+      institute patent litigation against any entity (including a
+      cross-claim or counterclaim in a lawsuit) alleging that the Work
+      or a Contribution incorporated within the Work constitutes direct
+      or contributory patent infringement, then any patent licenses
+      granted to You under this License for that Work shall terminate
+      as of the date such litigation is filed.
+
+   4. Redistribution. You may reproduce and distribute copies of the
+      Work or Derivative Works thereof in any medium, with or without
+      modifications, and in Source or Object form, provided that You
+      meet the following conditions:
+
+      (a) You must give any other recipients of the Work or
+          Derivative Works a copy of this License; and
+
+      (b) You must cause any modified files to carry prominent notices
+          stating that You changed the files; and
+
+      (c) You must retain, in the Source form of any Derivative Works
+          that You distribute, all copyright, patent, trademark, and
+          attribution notices from the Source form of the Work,
+          excluding those notices that do not pertain to any part of
+          the Derivative Works; and
+
+      (d) If the Work includes a "NOTICE" text file as part of its
+          distribution, then any Derivative Works that You distribute must
+          include a readable copy of the attribution notices contained
+          within such NOTICE file, excluding those notices that do not
+          pertain to any part of the Derivative Works, in at least one
+          of the following places: within a NOTICE text file distributed
+          as part of the Derivative Works; within the Source form or
+          documentation, if provided along with the Derivative Works; or,
+          within a display generated by the Derivative Works, if and
+          wherever such third-party notices normally appear. The contents
+          of the NOTICE file are for informational purposes only and
+          do not modify the License. You may add Your own attribution
+          notices within Derivative Works that You distribute, alongside
+          or as an addendum to the NOTICE text from the Work, provided
+          that such additional attribution notices cannot be construed
+          as modifying the License.
+
+      You may add Your own copyright statement to Your modifications and
+      may provide additional or different license terms and conditions
+      for use, reproduction, or distribution of Your modifications, or
+      for any such Derivative Works as a whole, provided Your use,
+      reproduction, and distribution of the Work otherwise complies with
+      the conditions stated in this License.
+
+   5. Submission of Contributions. Unless You explicitly state otherwise,
+      any Contribution intentionally submitted for inclusion in the Work
+      by You to the Licensor shall be under the terms and conditions of
+      this License, without any additional terms or conditions.
+      Notwithstanding the above, nothing herein shall supersede or modify
+      the terms of any separate license agreement you may have executed
+      with Licensor regarding such Contributions.
+
+   6. Trademarks. This License does not grant permission to use the trade
+      names, trademarks, service marks, or product names of the Licensor,
+      except as required for reasonable and customary use in describing the
+      origin of the Work and reproducing the content of the NOTICE file.
+
+   7. Disclaimer of Warranty. Unless required by applicable law or
+      agreed to in writing, Licensor provides the Work (and each
+      Contributor provides its Contributions) on an "AS IS" BASIS,
+      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+      implied, including, without limitation, any warranties or conditions
+      of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A
+      PARTICULAR PURPOSE. You are solely responsible for determining the
+      appropriateness of using or redistributing the Work and assume any
+      risks associated with Your exercise of permissions under this License.
+
+   8. Limitation of Liability. In no event and under no legal theory,
+      whether in tort (including negligence), contract, or otherwise,
+      unless required by applicable law (such as deliberate and grossly
+      negligent acts) or agreed to in writing, shall any Contributor be
+      liable to You for damages, including any direct, indirect, special,
+      incidental, or consequential damages of any character arising as a
+      result of this License or out of the use or inability to use the
+      Work (including but not limited to damages for loss of goodwill,
+      work stoppage, computer failure or malfunction, or any and all
+      other commercial damages or losses), even if such Contributor
+      has been advised of the possibility of such damages.
+
+   9. Accepting Warranty or Additional Liability. While redistributing
+      the Work or Derivative Works thereof, You may choose to offer,
+      and charge a fee for, acceptance of support, warranty, indemnity,
+      or other liability obligations and/or rights consistent with this
+      License. However, in accepting such obligations, You may act only
+      on Your own behalf and on Your sole responsibility, not on behalf
+      of any other Contributor, and only if You agree to indemnify,
+      defend, and hold each Contributor harmless for any liability
+      incurred by, or claims asserted against, such Contributor by reason
+      of your accepting any such warranty or additional liability.
+
+   END OF TERMS AND CONDITIONS
+
+   APPENDIX: How to apply the Apache License to your work.
+
+      To apply the Apache License to your work, attach the following
+      boilerplate notice, with the fields enclosed by brackets "[]"
+      replaced with your own identifying information. (Don't include
+      the brackets!)  The text should be enclosed in the appropriate
+      comment syntax for the file format. We also recommend that a
+      file or class name and description of purpose be included on the
+      same "printed page" as the copyright notice for easier
+      identification within third-party archives.
+
+   Copyright [yyyy] [name of copyright owner]
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+
+</document_content>
+</document>
+
+<document index="10">
+<source>src/v2-indesign-2023-and-newer/Lorem-Chatum-v2.idjs</source>
+<document_content>
+// Lorem Chatum v2.0 for Adobe InDesign 2023 and newer
+
+// Copyright (c) 2023 by Adam Twardoch
+// https://github.com/twardoch/lorem-chatum-for-indesign
+// Licensed under the Apache 2.0 License
+
+// Create a new OpenAI API secret key at https://platform.openai.com/account/api-keys
+// and paste it below
+const OPENAI_API_KEY = "sk-";
+
+
+let TEXT_COLOR;
+if (app.generalPreferences.uiBrightnessPreference <= 0.5) {
+    TEXT_COLOR = "white";
+} else {
+    TEXT_COLOR = "black";
+}
+
+
+async function alert(msg) {
+    /**
+     * This function creates a dialog box with a message and an OK button.
+     * @param {string} msg - The message to display in the dialog box.
+     * @returns {Promise} - A promise that resolves when the OK button is clicked.
+     */
+    return new Promise((resolve) => {
+        const dialog = document.createElement("dialog");
+        dialog.innerHTML = `
+            <form method="dialog" style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 8px 14px; color: inherit;">
+                <sp-body size="S" style="color: ${TEXT_COLOR};">
+                    <sp-text id="alert-message">${msg}</sp-text>
+                </sp-body>
+                <sp-footer>
+                    <sp-button id="ok-button" variant="cta">OK</sp-button>
+                </sp-footer>
+            </form>
+        `;
+
+
+        const okButton = dialog.querySelector("#ok-button");
+        okButton.addEventListener("click", () => {
+            dialog.close();
+            resolve();
+        });
+
+        document.body.appendChild(dialog);
+        dialog.showModal();
+    });
+}
+
+async function showProgress() {
+    /**
+     * This function creates a dialog box with a message indicating that the script is running.
+     * @returns {Promise} - A promise that resolves when the dialog box is closed.
+     */
+    const dialog = document.createElement("dialog");
+    dialog.innerHTML = `
+        <form method="dialog" style="padding: 8px 14px;">
+            <sp-body size="S" style="color: ${TEXT_COLOR};">
+                <sp-text>Lorem Chatum dolor...</sp-text>
+            </sp-body>
+        </form>
+    `;
+    document.body.appendChild(dialog);
+    const progressBar = dialog.querySelector("#progress-bar");
+    dialog.showModal();
+    return { dialog, progressBar };
+}
+
+async function openAIApi(apiKey, prompt, lang, maxTokens) {
+    /**
+     * This function sends a request to the OpenAI API to generate text based on a prompt.
+     * @param {string} apiKey - The OpenAI API key.
+     * @param {string} prompt - The prompt to generate text from.
+     * @param {string} lang - The language to generate text in.
+     * @param {number} maxTokens - The maximum number of tokens to generate.
+     * @returns {Promise} - A promise that resolves with the generated text.
+     */
+    let requestBody = JSON.stringify({
+        model: 'gpt-3.5-turbo',
+        messages: [
+            {
+                role: 'system',
+                content:
+                    'Write an essay in ' + lang + ', to the max length, by continuing the prompt. Do not ask anything, do not add anything that is not requested.',
+            },
+            { role: 'user', content: prompt },
+        ],
+        temperature: 1,
+        max_tokens: maxTokens,
+        top_p: 1,
+        n: 1,
+        frequency_penalty: 0,
+        presence_penalty: 0,
+    });
+
+    let response = await fetch('https://api.openai.com/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + apiKey,
+        },
+        body: requestBody
+    });
+
+    if (!response.ok) {
+        if (response.statusText == 'unauthorized') {
+            throw new Error(`<a href="https://platform.openai.com/account/api-keys">Click here to create an OpenAI API secret key,</a> then paste it at the beginning of this script, and run again.`);
+        } else {
+            throw new Error(`Error connecting to OpenAI API: ${response.statusText}.`);
+        }
+    }
+
+    let responseData = await response.json();
+    let completion = responseData.choices[0].message.content;
+    return completion;
+}
+
+async function getText(textFrame) {
+    /**
+     * This function gets the text content of a text frame.
+     * @param {TextFrame} textFrame - The text frame to get the text content from.
+     * @returns {Promise} - A promise that resolves with the text content of the text frame.
+     */
+    var text = "";
+    var words = textFrame.words;
+    if (words != null) {
+        for (var i = 0; i < words.length; i++) {
+            var word = words.item(i);
+            var wordContent = word.contents;
+
+            if (typeof wordContent === 'string') {
+                text += wordContent + " ";
+            }
+        }
+    }
+
+    return text;
+}
+
+async function getContext(textFrame) {
+    /**
+     * This function gets the context for generating text based on a text frame.
+     * @param {TextFrame} textFrame - The text frame to get the context from.
+     * @returns {Promise} - A promise that resolves with the context for generating text.
+     */
+    var context = await getText(textFrame);
+    if (context.length === 0) {
+        context = await collectPageText(textFrame);
+    }
+    return context;
+}
+
+async function collectPageText(textFrame) {
+    /**
+     * This function collects text from all text frames on a page.
+     * @param {TextFrame} textFrame - The text frame to collect text from.
+     * @returns {Promise} - A promise that resolves with the collected text.
+     */
+    var currentPage = textFrame.parentPage;
+    var pages = [];
+
+    pages.push(currentPage);
+
+    var combinedText = '';
+    var maxWords = 500;
+    for (var i = 0; i < pages.length; i++) {
+        combinedText += await getTextFromPage(pages[i]);
+        if (wordCount(combinedText) >= maxWords) {
+            combinedText = await capTextAtWords(combinedText, maxWords);
+            break;
+        }
+    }
+
+    return combinedText;
+}
+
+async function getTextFromPage(page) {
+    /**
+     * This function gets the text content of all text frames on a page.
+     * @param {Page} page - The page to get the text content from.
+     * @returns {Promise} - A promise that resolves with the text content of all text frames on the page.
+     */
+    var textFrames = page.textFrames;
+    var combinedText = '';
+    for (var i = 0; i < textFrames.length; i++) {
+        var textFrame = textFrames.item(i);
+        combinedText += await getText(textFrame);
+    }
+
+    return combinedText;
+}
+
+async function wordCount(text) {
+    /**
+     * This function counts the number of words in a string.
+     * @param {string} text - The string to count the words in.
+     * @returns {Promise} - A promise that resolves with the number of words in the string.
+     */
+    var words = text.replace(/^\s+|\s+$/g, '').split(/\s+/);
+    return words.length;
+}
+
+async function capTextAtWords(text, wordLimit) {
+    /**
+     * This function caps the number of words in a string.
+     * @param {string} text - The string to cap the number of words in.
+     * @param {number} wordLimit - The maximum number of words to allow in the string.
+     * @returns {Promise} - A promise that resolves with the capped string.
+     */
+    var words = text.replace(/^\s+|\s+$/g, '').split(/\s+/);
+    var cappedWords = words.slice(0, wordLimit);
+    return cappedWords.join(' ');
+}
+
+async function estimateTokens(textFrame) {
+    /**
+     * This function estimates the number of tokens needed to generate text for a text frame.
+     * @param {TextFrame} textFrame - The text frame to estimate the number of tokens for.
+     * @returns {Promise} - A promise that resolves with the estimated number of tokens.
+     */
+    var frameWidth = textFrame.geometricBounds[3] - textFrame.geometricBounds[1];
+    var frameHeight = textFrame.geometricBounds[2] - textFrame.geometricBounds[0];
+    var fontSize = textFrame.texts.item(0).pointSize;
+    var lineHeight = fontSize * 1.2;
+
+    var avgCharWidth = fontSize * 0.6;
+    var charsPerLine = Math.floor(frameWidth / avgCharWidth);
+    var lines = Math.floor(frameHeight / lineHeight);
+
+    var estimatedChars = charsPerLine * lines;
+    console.warn("  frameHeight: " + frameHeight);
+    console.warn("  frameWidth: " + frameWidth);
+    console.warn("  lineHeight: " + lineHeight);
+    console.warn("  fontSize: " + fontSize);
+    console.warn("  Lines: " + lines);
+    console.warn("  Chars per line: " + charsPerLine);
+    console.warn("  Chars: " + estimatedChars);
+    var estimatedTokens = Math.min(Math.ceil(estimatedChars), 4095);
+
+    return estimatedTokens;
+}
+
+async function getOpenAIApiKey() {
+    /**
+     * This function gets the OpenAI API key.
+     * @returns {Promise} - A promise that resolves with the OpenAI API key.
+     */
+    return OPENAI_API_KEY;
+}
+
+async function getOpenAICompletion(context, lang, estimatedTokens) {
+    /**
+     * This function generates text using the OpenAI API.
+     * @param {string} context - The context for generating text.
+     * @param {string} lang - The language to generate text in.
+     * @param {number} estimatedTokens - The estimated number of tokens needed to generate text.
+     * @returns {Promise} - A promise that resolves with the generated text.
+     */
+    var apiKey = await getOpenAIApiKey();
+    var prompt = context.replace(/[\r\n]+/g, ' ') + ' ';
+    var completion = '';
+
+    try {
+        completion = await openAIApi(apiKey, prompt, lang, estimatedTokens);
+    } catch (error) {
+        await alert('OpenAI error: ' + error.message);
+    }
+
+    return ' ' + completion.replace(/^\n/, '');
+}
+
+async function completeSelectedFrameText() {
+    /**
+     * This function generates text and adds it to the selected text frame.
+     */
+    if (
+        app.documents.length === 0 ||
+        app.selection.length !== 1 ||
+        app.selection[0].constructorName !== 'TextFrame'
+    ) {
+        await alert('Please select a text frame, and set the Character language to the desired language.');
+        return;
+    }
+    doc = app.activeDocument;
+    const horizontalMeasurementUnits = doc.viewPreferences.horizontalMeasurementUnits;
+    doc.viewPreferences.horizontalMeasurementUnits = MeasurementUnits.points;
+    const verticalMeasurementUnits = doc.viewPreferences.verticalMeasurementUnits;
+    doc.viewPreferences.verticalMeasurementUnits = MeasurementUnits.points;
+    const typographicMeasurementUnits = doc.viewPreferences.typographicMeasurementUnits;
+    doc.viewPreferences.typographicMeasurementUnits = MeasurementUnits.points;
+    const textSizeMeasurementUnits = doc.viewPreferences.textSizeMeasurementUnits;
+    doc.viewPreferences.textSizeMeasurementUnits = MeasurementUnits.points;
+
+    const { dialog: progressDialog } = await showProgress();
+    try {
+        var textFrame = app.selection[0];
+        var context = await getContext(textFrame);
+        var lang = textFrame.texts.item(0).appliedLanguage.name.split(":")[0];
+        console.warn("CONTEXT: " + context);
+        var estimatedTokens = await estimateTokens(textFrame);
+        console.warn("TOKENS: " + estimatedTokens + " LANG: " + lang);
+        var completion = await getOpenAICompletion(context, lang, estimatedTokens);
+        console.warn("COMPLETION: " + completion);
+        textFrame.contents += completion;
+    } finally {
+        progressDialog.close();
+    }
+    doc.viewPreferences.horizontalMeasurementUnits = horizontalMeasurementUnits;
+    doc.viewPreferences.verticalMeasurementUnits = verticalMeasurementUnits;
+    doc.viewPreferences.typographicMeasurementUnits = typographicMeasurementUnits;
+    doc.viewPreferences.textSizeMeasurementUnits = textSizeMeasurementUnits;
+
+}
+
+await completeSelectedFrameText();
+
+</document_content>
+</document>
+
+# File: /Users/adam/Developer/vcs/github.twardoch/pub/lorem-chatum-for-indesign/src/v2-indesign-2023-and-newer/install-Mac.command
+# Language: python
+
+import re
+import shutil
+from pathlib import Path
+
+def install_indesign_script((file_name)):
+
+
+<document index="11">
+<source>src/v2-indesign-2023-and-newer/install-Win.bat</source>
+<document_content>
+@echo off
+setlocal enabledelayedexpansion
+
+echo.
+echo ### LOREM CHATUM
+echo.
+echo Go to https://platform.openai.com/account/api-keys and create an OpenAI API secret key.
+echo.
+echo Now paste the key here and press Enter:
+set /p OPENAI_API_KEY=
+
+set SCRIPT_NAME=Lorem-Chatum-v2.idjs
+set INDESIGN_BASE_PATH=%USERPROFILE%\AppData\Roaming\Adobe\InDesign
+set SCRIPTS_PANEL=Scripts Panel
+
+for /f "tokens=* delims=" %%v in ('dir /b /ad /o-n "%INDESIGN_BASE_PATH%\Version *.*"') do (
+    set LATEST_VERSION_FOLDER=%%v
+    goto :break
+)
+:break
+
+for /f "tokens=* delims=" %%l in ('dir /b /ad "%INDESIGN_BASE_PATH%\%LATEST_VERSION_FOLDER%"') do (
+    set LANGUAGE_FOLDER=%%l
+    goto :break2
+)
+:break2
+
+set TARGET_FOLDER=%INDESIGN_BASE_PATH%\%LATEST_VERSION_FOLDER%\%LANGUAGE_FOLDER%\%SCRIPTS_PANEL%
+set TARGET_FILE=%TARGET_FOLDER%\%SCRIPT_NAME%
+
+echo Original script path: %SCRIPT_NAME%
+echo Target folder: %TARGET_FOLDER%
+
+copy "%SCRIPT_NAME%" "%TARGET_FOLDER%" >nul
+if errorlevel 1 (
+    echo Error: Failed to copy the script to the target folder.
+    exit /b 1
+)
+
+echo Replacing API key...
+(
+    for /f "tokens=1,* delims=]" %%a in ('find /n /v "" "%TARGET_FILE%"') do (
+        set "line=%%b"
+        if "!line!" == "const OPENAI_API_KEY = ""sk-"";" (
+            echo const OPENAI_API_KEY = ""%OPENAI_API_KEY%"";
+        ) else (
+            echo.!line!
+        )
+    )
+) > "%TARGET_FILE%.tmp"
+
+move /y "%TARGET_FILE%.tmp" "%TARGET_FILE%" >nul
+
+echo.
+echo Successfully installed %SCRIPT_NAME% in %TARGET_FOLDER%.
+echo.
+echo 1. Run Adobe InDesign, open Window > Utilities > Scripts, and in the Script panel, open User.
+echo 2. Select a text frame and 2x-click Lorem-Chatum.idjs.
+echo.
+pause
+
+</document_content>
+</document>
+
+# File: /Users/adam/Developer/vcs/github.twardoch/pub/lorem-chatum-for-indesign/test/integration-test.js
+# Language: javascript
+
+async function runIntegrationTest(())
+
+
+# File: /Users/adam/Developer/vcs/github.twardoch/pub/lorem-chatum-for-indesign/test/run-tests.js
+# Language: javascript
+
+function assert((condition, message))
+
+function assertEqual((actual, expected, message))
+
+function assertMatch((actual, regex, message))
+
+function runTest((testName, testFunction))
+
+function testFileStructure(())
+
+function testPackageJson(())
+
+function testVersionScript(())
+
+function testSourceFileSyntax(())
+
+function testBuildScript(())
+
+function testInstallerFiles(())
+
+function runAllTests(())
+
+
+</documents>
